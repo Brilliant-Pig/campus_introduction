@@ -1,148 +1,45 @@
 <template>
-    <div style="height: 600px; position: relative;">
-    <InfiniteMenu :items="items" />
-    </div>
+  <div style="position: relative; width: 100%; height: 100%">
+    <canvas
+      id="infinite-grid-menu-canvas"
+      ref="canvasRef"
+    />
+
+    <template v-if="activeItem">
+      <h2 :class="`face-title ${isMoving ? 'inactive' : 'active'}`">
+        {{ activeItem.title }}
+      </h2>
+
+      <p :class="`face-description ${isMoving ? 'inactive' : 'active'}`">
+        {{ activeItem.description }}
+      </p>
+
+      <div
+        @click="handleButtonClick"
+        :class="`action-button ${isMoving ? 'inactive' : 'active'}`"
+      >
+        <p class="action-button-icon">&#x2197;</p>
+      </div>
+    </template>
+  </div>
+  <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css' /> 
+
 </template>
 
 <script>
-import InfiniteMenu from './InfiniteMenu';
-import { useEffect, useRef, useState } from 'react';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { mat4, quat, vec2, vec3 } from 'gl-matrix';
-import './InfiniteMenu.css';
 
-const items = [
-    {
-        image: 'https://picsum.photos/300/300?grayscale',
-        link: 'https://google.com/',
-        title: 'Item 1',
-        description: 'This is pretty cool, right?'
-    },
-    {
-        image: 'https://picsum.photos/400/400?grayscale',
-        link: 'https://google.com/',
-        title: 'Item 2',
-        description: 'This is pretty cool, right?'
-    },
-    {
-        image: 'https://picsum.photos/500/500?grayscale',
-        link: 'https://google.com/',
-        title: 'Item 3',
-        description: 'This is pretty cool, right?'
-    },
-    {
-        image: 'https://picsum.photos/600/600?grayscale',
-        link: 'https://google.com/',
-        title: 'Item 4',
-        description: 'This is pretty cool, right?'
-    }
-    ];
-    const discVertShaderSource = `#version 300 es
-
-uniform mat4 uWorldMatrix;
-uniform mat4 uViewMatrix;
-uniform mat4 uProjectionMatrix;
-uniform vec3 uCameraPosition;
-uniform vec4 uRotationAxisVelocity;
-
-in vec3 aModelPosition;
-in vec3 aModelNormal;
-in vec2 aModelUvs;
-in mat4 aInstanceMatrix;
-
-out vec2 vUvs;
-out float vAlpha;
-flat out int vInstanceId;
-
-#define PI 3.141593
-
-void main() {
-    vec4 worldPosition = uWorldMatrix * aInstanceMatrix * vec4(aModelPosition, 1.);
-
-    // center of the disc in world space
-    vec3 centerPos = (uWorldMatrix * aInstanceMatrix * vec4(0., 0., 0., 1.)).xyz;
-    float radius = length(centerPos.xyz);
-
-    // skip the center vertex of the disc geometry
-    if (gl_VertexID > 0) {
-        // stretch the disc according to the axis and velocity of the rotation
-        vec3 rotationAxis = uRotationAxisVelocity.xyz;
-        float rotationVelocity = min(.15, uRotationAxisVelocity.w * 15.);
-        // the stretch direction is orthogonal to the rotation axis and the position
-        vec3 stretchDir = normalize(cross(centerPos, rotationAxis));
-        // the position of this vertex relative to the center position
-        vec3 relativeVertexPos = normalize(worldPosition.xyz - centerPos);
-        // vertices more in line with the stretch direction get a larger offset
-        float strength = dot(stretchDir, relativeVertexPos);
-        float invAbsStrength = min(0., abs(strength) - 1.);
-        strength = rotationVelocity * sign(strength) * abs(invAbsStrength * invAbsStrength * invAbsStrength + 1.);
-        // apply the stretch distortion
-        worldPosition.xyz += stretchDir * strength;
-    }
-
-    // move the vertex back to the overall sphere
-    worldPosition.xyz = radius * normalize(worldPosition.xyz);
-
-    gl_Position = uProjectionMatrix * uViewMatrix * worldPosition;
-
-    vAlpha = smoothstep(0.5, 1., normalize(worldPosition.xyz).z) * .9 + .1;
-    vUvs = aModelUvs;
-    vInstanceId = gl_InstanceID;
-}
-`;
-
-const discFragShaderSource = `#version 300 es
-precision highp float;
-
-uniform sampler2D uTex;
-uniform int uItemCount;
-uniform int uAtlasSize;
-
-out vec4 outColor;
-
-in vec2 vUvs;
-in float vAlpha;
-flat in int vInstanceId;
-
-void main() {
-    // Calculate which item to display based on instance ID
-    int itemIndex = vInstanceId % uItemCount;
-    int cellsPerRow = uAtlasSize;
-    int cellX = itemIndex % cellsPerRow;
-    int cellY = itemIndex / cellsPerRow;
-    vec2 cellSize = vec2(1.0) / vec2(float(cellsPerRow));
-    vec2 cellOffset = vec2(float(cellX), float(cellY)) * cellSize;
-
-    // Get texture dimensions and calculate aspect ratio
-    ivec2 texSize = textureSize(uTex, 0);
-    float imageAspect = float(texSize.x) / float(texSize.y);
-    float containerAspect = 1.0; // Assuming square container
-    
-    // Calculate cover scale factor
-    float scale = max(imageAspect / containerAspect, 
-                     containerAspect / imageAspect);
-    
-    // Rotate 180 degrees and adjust UVs for cover
-    vec2 st = vec2(vUvs.x, 1.0 - vUvs.y);
-    st = (st - 0.5) * scale + 0.5;
-    
-    // Clamp coordinates to prevent repeating
-    st = clamp(st, 0.0, 1.0);
-    
-    // Map to the correct cell in the atlas
-    st = st * cellSize + cellOffset;
-    
-    outColor = texture(uTex, st);
-    outColor.a *= vAlpha;
-}
-`;
+const defaultItems = [
+  {
+    image: 'https://picsum.photos/900/900?grayscale',
+    link: 'https://google.com/',
+    title: '',
+    description: ''
+  }
+];
 
 class Face {
-  /**
-   * Creates a new triangle face by the indices of each vertex.
-   * @param {number} a Index of the first vertex
-   * @param {number} b Index of the second vertex
-   * @param {number} c Index of the third vertex
-   */
   constructor(a, b, c) {
     this.a = a;
     this.b = b;
@@ -277,10 +174,9 @@ class IcosahedronGeometry extends Geometry {
 }
 
 class DiscGeometry extends Geometry {
-  constructor(steps = 4, radius = 1) {
+  constructor(steps = 72, radius = 1) { // 增加分段数
     super();
     steps = Math.max(4, steps);
-
     const alpha = (2 * Math.PI) / steps;
 
     // center vertex
@@ -292,6 +188,7 @@ class DiscGeometry extends Geometry {
       const x = Math.cos(alpha * i);
       const y = Math.sin(alpha * i);
       this.addVertex(radius * x, radius * y, 0);
+      // 修改UV坐标为完整0-1范围
       this.lastVertex.uv[0] = x * 0.5 + 0.5;
       this.lastVertex.uv[1] = y * 0.5 + 0.5;
 
@@ -407,37 +304,22 @@ function createAndSetupTexture(gl, minFilter, magFilter, wrapS, wrapT) {
 }
 
 class ArcballControl {
-  // flag which indicates if the user is currently dragging
   isPointerDown = false;
-
-  // orientation of the object
   orientation = quat.create();
-
-  // current pointer rotation as a quaternion
   pointerRotation = quat.create();
-
-  // velocity of rotation
   rotationVelocity = 0;
-
-  // rotation axis
   rotationAxis = vec3.fromValues(1, 0, 0);
-
-  // direction to move the snap target to (in world space)
   snapDirection = vec3.fromValues(0, 0, -1);
-
-  // direction of the target to move to the snap direction (in world space)
   snapTargetDirection;
-
   EPSILON = 0.1;
   IDENTITY_QUAT = quat.create();
 
   constructor(canvas, updateCallback) {
     this.canvas = canvas;
     this.updateCallback = updateCallback || (() => null);
-
     this.pointerPos = vec2.create();
     this.previousPointerPos = vec2.create();
-    this._rotationVelocity = 0; // smooth rotational velocity
+    this._rotationVelocity = 0;
     this._combinedQuat = quat.create();
 
     canvas.addEventListener('pointerdown', (e) => {
@@ -543,7 +425,6 @@ class ArcballControl {
     const h = this.canvas.clientHeight;
     const s = Math.max(w, h) - 1;
 
-    // map to [-1, 1]
     const x = (2 * pos[0] - w - 1) / s;
     const y = (2 * pos[1] - h - 1) / s;
     let z = 0;
@@ -560,7 +441,7 @@ class ArcballControl {
 }
 
 class InfiniteGridMenu {
-  TARGET_FRAME_DURATION = 1000 / 60; // 60 fps
+  TARGET_FRAME_DURATION = 1000 / 60;
   SPHERE_RADIUS = 2;
 
   #time = 0;
@@ -585,7 +466,7 @@ class InfiniteGridMenu {
 
   nearestVertexIndex = null;
   smoothRotationVelocity = 0;
-  scaleFactor = 1.0; // default
+  scaleFactor = 1.0;
   movementActive = false;
 
   constructor(canvas, items, onActiveItemChange, onMovementChange, onInit = null) {
@@ -634,6 +515,106 @@ class InfiniteGridMenu {
     this.viewportSize = vec2.fromValues(this.canvas.clientWidth, this.canvas.clientHeight);
     this.drawBufferSize = vec2.clone(this.viewportSize);
 
+    const discVertShaderSource = `#version 300 es
+
+uniform mat4 uWorldMatrix;
+uniform mat4 uViewMatrix;
+uniform mat4 uProjectionMatrix;
+uniform vec3 uCameraPosition;
+uniform vec4 uRotationAxisVelocity;
+
+in vec3 aModelPosition;
+in vec3 aModelNormal;
+in vec2 aModelUvs;
+in mat4 aInstanceMatrix;
+
+out vec2 vUvs;
+out float vAlpha;
+flat out int vInstanceId;
+
+#define PI 3.141593
+
+void main() {
+    vec4 worldPosition = uWorldMatrix * aInstanceMatrix * vec4(aModelPosition, 1.);
+
+    // center of the disc in world space
+    vec3 centerPos = (uWorldMatrix * aInstanceMatrix * vec4(0., 0., 0., 1.)).xyz;
+    float radius = length(centerPos.xyz);
+
+    // skip the center vertex of the disc geometry
+    if (gl_VertexID > 0) {
+        // stretch the disc according to the axis and velocity of the rotation
+        vec3 rotationAxis = uRotationAxisVelocity.xyz;
+        float rotationVelocity = min(.15, uRotationAxisVelocity.w * 15.);
+        // the stretch direction is orthogonal to the rotation axis and the position
+        vec3 stretchDir = normalize(cross(centerPos, rotationAxis));
+        // the position of this vertex relative to the center position
+        vec3 relativeVertexPos = normalize(worldPosition.xyz - centerPos);
+        // vertices more in line with the stretch direction get a larger offset
+        float strength = dot(stretchDir, relativeVertexPos);
+        float invAbsStrength = min(0., abs(strength) - 1.);
+        strength = rotationVelocity * sign(strength) * abs(invAbsStrength * invAbsStrength * invAbsStrength + 1.);
+        // apply the stretch distortion
+        worldPosition.xyz += stretchDir * strength;
+    }
+
+    // move the vertex back to the overall sphere
+    worldPosition.xyz = radius * normalize(worldPosition.xyz);
+
+    gl_Position = uProjectionMatrix * uViewMatrix * worldPosition;
+
+    vAlpha = smoothstep(0.5, 1., normalize(worldPosition.xyz).z) * .9 + .1;
+    vUvs = aModelUvs;
+    vInstanceId = gl_InstanceID;
+}
+`;
+
+const discFragShaderSource = `#version 300 es
+precision highp float;
+
+uniform sampler2D uTex;
+uniform int uItemCount;
+uniform int uAtlasSize;
+
+out vec4 outColor;
+
+in vec2 vUvs;
+in float vAlpha;
+flat in int vInstanceId;
+
+void main() {
+    // Calculate which item to display based on instance ID
+    int itemIndex = vInstanceId % uItemCount;
+    int cellsPerRow = uAtlasSize;
+    int cellX = itemIndex % cellsPerRow;
+    int cellY = itemIndex / cellsPerRow;
+    vec2 cellSize = vec2(1.0) / vec2(float(cellsPerRow));
+    vec2 cellOffset = vec2(float(cellX), float(cellY)) * cellSize;
+
+    // Get texture dimensions and calculate aspect ratio
+    ivec2 texSize = textureSize(uTex, 0);
+    float imageAspect = float(texSize.x) / float(texSize.y);
+    float containerAspect = 1.0; // Assuming square container
+    
+    // Calculate cover scale factor
+    float scale = max(imageAspect / containerAspect, 
+                     containerAspect / imageAspect);
+    
+    // Rotate 180 degrees and adjust UVs for cover
+    vec2 st = vec2(vUvs.x, 1.0 - vUvs.y);
+    st = (st - 0.5) * scale + 0.5;
+    
+    // Clamp coordinates to prevent repeating
+    st = clamp(st, 0.0, 1.0);
+    
+    // Map to the correct cell in the atlas
+    st = st * cellSize + cellOffset;
+    
+    outColor = texture(uTex, st);
+    outColor.a *= vAlpha;
+}
+`;
+
     this.discProgram = createProgram(gl, [discVertShaderSource, discFragShaderSource], null, {
       aModelPosition: 0,
       aModelNormal: 1,
@@ -657,7 +638,7 @@ class InfiniteGridMenu {
       uAtlasSize: gl.getUniformLocation(this.discProgram, 'uAtlasSize'),
     };
 
-    this.discGeo = new DiscGeometry(56, 1);
+    this.discGeo = new DiscGeometry(72, 1); 
     this.discBuffers = this.discGeo.data;
     this.discVAO = makeVertexArray(
       gl,
@@ -685,39 +666,52 @@ class InfiniteGridMenu {
 
     if (onInit) onInit(this);
   }
-
   #initTexture() {
-    const gl = this.gl;
-    this.tex = createAndSetupTexture(gl, gl.LINEAR, gl.LINEAR, gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE);
+  const gl = this.gl;
+  this.tex = createAndSetupTexture(gl, gl.LINEAR, gl.LINEAR, gl.CLAMP_TO_EDGE, gl.CLAMP_TO_EDGE);
 
-    const itemCount = Math.max(1, this.items.length);
-    this.atlasSize = Math.ceil(Math.sqrt(itemCount));
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    const cellSize = 512;
+  const itemCount = Math.max(1, this.items.length);
+  this.atlasSize = Math.ceil(Math.sqrt(itemCount));
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  const cellSize = 512;
 
-    canvas.width = this.atlasSize * cellSize;
-    canvas.height = this.atlasSize * cellSize;
+  canvas.width = this.atlasSize * cellSize;
+  canvas.height = this.atlasSize * cellSize;
 
-    Promise.all(this.items.map(item =>
-      new Promise(resolve => {
-        const img = new Image();
-        img.crossOrigin = 'anonymous';
-        img.onload = () => resolve(img);
-        img.src = item.image;
-      })
-    )).then(images => {
-      images.forEach((img, i) => {
-        const x = (i % this.atlasSize) * cellSize;
-        const y = Math.floor(i / this.atlasSize) * cellSize;
-        ctx.drawImage(img, x, y, cellSize, cellSize);
-      });
-
-      gl.bindTexture(gl.TEXTURE_2D, this.tex);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, canvas);
-      gl.generateMipmap(gl.TEXTURE_2D);
+  Promise.all(this.items.map(item =>
+    new Promise(resolve => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => resolve(img);
+      img.onerror = () => {
+        // 加载失败时使用默认图片
+        const defaultImg = new Image();
+        defaultImg.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+        defaultImg.onload = () => resolve(defaultImg);
+      };
+      img.src = item.image;
+    })
+  )).then(images => {
+    images.forEach((img, i) => {
+      const x = (i % this.atlasSize) * cellSize;
+      const y = Math.floor(i / this.atlasSize) * cellSize;
+      
+      // 保持图片比例居中
+      const scale = Math.min(cellSize/img.width, cellSize/img.height);
+      const width = img.width * scale;
+      const height = img.height * scale;
+      const offsetX = (cellSize - width)/2;
+      const offsetY = (cellSize - height)/2;
+      
+      ctx.drawImage(img, x+offsetX, y+offsetY, width, height);
     });
-  }
+
+    gl.bindTexture(gl.TEXTURE_2D, this.tex);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, canvas);
+    gl.generateMipmap(gl.TEXTURE_2D);
+  });
+}
 
   #initDiscInstances(count) {
     const gl = this.gl;
@@ -785,6 +779,7 @@ class InfiniteGridMenu {
 
     gl.enable(gl.CULL_FACE);
     gl.enable(gl.DEPTH_TEST);
+    gl.depthFunc(gl.LEQUAL);
 
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -818,6 +813,9 @@ class InfiniteGridMenu {
       0,
       this.DISC_INSTANCE_COUNT
     );
+    const nearestVertexIndex = this.#findNearestVertexIndex();
+  const currentItemIndex = nearestVertexIndex % Math.max(1, this.items.length);
+  gl.uniform1i(gl.getUniformLocation(this.discProgram, "uCurrentItemIndex"), currentItemIndex);
   }
 
   #updateCameraMatrix() {
@@ -895,93 +893,108 @@ class InfiniteGridMenu {
   }
 }
 
-const defaultItems = [
-  {
-    image: 'https://picsum.photos/900/900?grayscale',
-    link: 'https://google.com/',
-    title: '',
-    description: ''
+export default {
+  name: 'InfiniteMenu',
+  props: {
+    items: {
+      type: Array,
+      default: () => [
+        {
+          image: 'https://picsum.photos/300/300?grayscale',
+          link: 'https://google.com/',
+          title: '火热专业',
+          description: '内含历来分数线哦'
+        },
+        {
+          image: 'https://picsum.photos/400/400?grayscale',
+          link: 'https://google.com/',
+          title: '学校生活',
+          description: '你知道吗？广东医宿舍最舒服！还有最美味食堂和最长的小吃街三饭！出行还有地铁！'
+        },
+        {
+          image: 'https://picsum.photos/500/500?grayscale',
+          link: 'https://google.com/',
+          title: '学生成长',
+          description: '你知道吗？我们学校的社团比赛应有尽有！贯穿学术、文艺、体育、公益等各个方面！'
+        },
+        {
+          image: 'https://picsum.photos/600/600?grayscale',
+          link: 'https://google.com/',
+          title: '校园风景',
+          description: '你知道吗？广东医校园风景犹如花园岭一般！有最美的图书馆和最美的教学楼！'
+        },
+        {
+          image: 'https://picsum.photos/600/600?grayscale',
+          link: 'https://google.com/',
+          title: '教学资源',
+          description: '你知道吗？广东医有最牛的科研团队和最强的师资力量！'
+        },
+        {
+          image: 'https://picsum.photos/600/600?grayscale',
+          link: 'https://google.com/',
+          title: '学校概况',
+          description: '内含校史，校训，校徽，校歌哦'
+        },
+      ]
+    }
+  },
+  setup(props) {
+    const canvasRef = ref(null);
+    const activeItem = ref(null);
+    const isMoving = ref(false);
+
+    const handleButtonClick = () => {
+      if (!activeItem.value?.link) return;
+      if (activeItem.value.link.startsWith('http')) {
+        window.open(activeItem.value.link, '_blank');
+      } else {
+        console.log('Internal route:', activeItem.value.link);
+      }
+    };
+
+    onMounted(() => {
+      const canvas = canvasRef.value;
+      let sketch;
+
+      const handleActiveItem = (index) => {
+        const itemIndex = index % props.items.length;
+        activeItem.value = props.items[itemIndex];
+      };
+
+      if (canvas) {
+        sketch = new InfiniteGridMenu(
+          canvas,
+          props.items.length ? props.items : defaultItems,
+          handleActiveItem,
+          (moving) => { isMoving.value = moving; },
+          (sk) => sk.run()
+        );
+      }
+
+      const handleResize = () => {
+        if (sketch) {
+          sketch.resize();
+        }
+      };
+
+      window.addEventListener('resize', handleResize);
+
+      onUnmounted(() => {
+        window.removeEventListener('resize', handleResize);
+      });
+    });
+
+    return {
+      canvasRef,
+      activeItem,
+      isMoving,
+      handleButtonClick
+    };
   }
-];
-
-function InfiniteMenu({ items = [] }) {
-  const canvasRef = useRef(null);
-  const [activeItem, setActiveItem] = useState(null);
-  const [isMoving, setIsMoving] = useState(false);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    let sketch;
-
-    const handleActiveItem = (index) => {
-      const itemIndex = index % items.length;
-      setActiveItem(items[itemIndex]);
-    };
-
-    if (canvas) {
-      sketch = new InfiniteGridMenu(
-        canvas,
-        items.length ? items : defaultItems,
-        handleActiveItem,
-        setIsMoving,
-        (sk) => sk.run()
-      );
-    }
-
-    const handleResize = () => {
-      if (sketch) {
-        sketch.resize();
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    handleResize();
-
-    // Cleanup
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [items]);
-
-  const handleButtonClick = () => {
-    if (!activeItem?.link) return;
-    if (activeItem.link.startsWith('http')) {
-      window.open(activeItem.link, '_blank');
-    } else {
-      console.log('Internal route:', activeItem.link);
-    }
-  };
-
-  return (
-    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-      <canvas
-        id="infinite-grid-menu-canvas"
-        ref={canvasRef}
-      />
-
-      {/* Feel free to customize what's displayed when the menu is not being dragged and an item is displayed in the center */}
-      {activeItem && (
-        <>
-          <h2 className={`face-title ${isMoving ? 'inactive' : 'active'}`}>
-            {activeItem.title}
-          </h2>
-
-          <p className={`face-description ${isMoving ? 'inactive' : 'active'}`}> {activeItem.description}</p>
-
-          <div onClick={handleButtonClick} className={`action-button ${isMoving ? 'inactive' : 'active'}`}>
-            <p className="action-button-icon">&#x2197;</p>
-          </div>
-        </>
-      )
-      }
-    </div >
-  );
-}
-
-export default InfiniteMenu;
+};
 </script>
 
-<style>
+<style scoped>
 #infinite-grid-menu-canvas {
   cursor: grab;
   width: 100%;
@@ -1023,14 +1036,22 @@ export default InfiniteMenu;
   user-select: none;
   position: relative;
   color: #060606;
-  top: 2px;
+  bottom: 15px;
   font-size: 26px;
 }
 
 .face-title {
   position: absolute;
+  left: 15%;  /* 调整左侧位置 */
   top: 50%;
-  transform: translate(20%, -50%);
+  transform: translateY(-50%);
+  font-size: 3rem;
+  z-index: 10;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5); 
+  max-width: 20ch;
+  font-family:'Maple Mono CN Medium';
+  font-weight:'400'
 }
 
 .face-title.active {
@@ -1047,13 +1068,17 @@ export default InfiniteMenu;
 }
 
 .face-description {
-  user-select: none;
   position: absolute;
-  max-width: 10ch;
+  left: 85%;  /* 调整右侧位置 */
   top: 50%;
-  font-size: 1.5rem;
-  right: 1%;
-  transform: translate(0, -50%);
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 10;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+  max-width: 25ch;
+  font-family:'Maple Mono CN Medium';
+  font-weight:'400'
 }
 
 .face-description.active {
@@ -1091,9 +1116,26 @@ export default InfiniteMenu;
   transition: 0.1s ease;
 }
 
-@media (max-width: 1500px) {
-  .face-title, .face-description {
-    display: none;
+@media (max-width: 1200px) {
+  .face-title {
+    font-size: 2rem;
+    left: 5%;
+  }
+  
+  .face-description {
+    font-size: 1rem;
+    right: 5%;
   }
 }
-</style>
+
+@media (max-width: 768px) {
+  .face-title, .face-description {
+    font-size: 1.5rem;
+    position: static;
+    transform: none;
+    text-align: center;
+    margin: 10px auto;
+    max-width: 100%;
+  }
+}
+@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";</style>
