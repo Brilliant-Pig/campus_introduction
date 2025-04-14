@@ -2,6 +2,7 @@
   <div class="background-container">
   <div class="first">
     <h5>WE HAVE</h5>
+    <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-SemiBold/result.css' />
     <p v-html="boldNumbers(message1)"></p >
     <p v-html="boldNumbers(message2)"></p >
     <p v-html="boldNumbers(message3)"></p >
@@ -18,6 +19,7 @@
     <p v-html="boldNumbers(message14)"></p >
     <p v-html="boldNumbers(message15)"></p >
     <p v-html="boldNumbers(message16)"></p >
+    <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css' /> 
     </div>
   </div>
 </template>
@@ -26,14 +28,14 @@
 export default {
   data() {
     return {
-      message1: '师规模与结构:',
-      message2: '广东区科大学魏有教职工1910人，天中本任教师111人，包括博士生手价29人和硕士生导师日9人，这一规蝶行广平省内画群太学中处于顿先地位，为导秩的教学和科研提供了坚实的人才基础',
+      message1: '教师规模与结构:',
+      message2: '广东医科大学共有教职工1910人，其中专任教师1411人，包括博士生手价29人和硕士生导师日9人，这一规蝶行广平省内画群太学中处于顿先地位，为导秩的教学和科研提供了坚实的人才基础',
       message3: '高层次人才包括：',
       message4:'‌享受国务院政府特殊津贴专家‌15人',
       message5:'‌全国模范教师、优秀教师、师德先进个人‌等荣誉称号获得者10人',
       message6:'广东省高层次人才：特聘教授、特聘研究员、特聘讲师等各类人才共计‌50人',
       message7:'千百十人才培养工程”省级培养对象‌14人',
-      message8:'“扬帆计划”高层次人才‌16人',
+      message8:'“扬帆计划”高层次人才‌16 人',
       message9:'科研与教学成果‌',
       message10:'师资队伍在科研和教学方面取得了显著成就：',
       message11:'熊兴东教授‌作为基础医学院副院长，是广东省扬帆计划高层次人才和南粤优秀教师，主持多项国家级和省级科研项目，累计科研经费达1260万元，发表SCI论文36篇，并获得多项荣誉称号。',
@@ -56,13 +58,20 @@ export default {
 <style >
 p{
   font-size: 30px; 
-
   text-align: left;
+  font-family:'Maple Mono CN SemiBold';
+  font-weight:'400'
 }
+@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-SemiBold/result.css";
 h5{
   font-size: 100px;
   text-align: center;
+  transform: skew(0deg, 16deg);
+  font-family:'MaokenAssortedSans';
+  font-weight:'500'
 }
+@import "https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css";
+
 .background-container {
   background: url('../assets/微信图片_20250412010538.jpg') no-repeat center center;
   background-size: cover;

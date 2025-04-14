@@ -19,6 +19,15 @@ const routes = [
         freeAuth: true
         }
     },
+    {
+        path: '/third',
+        name: 'third',
+        component: () => import('../pages/third.vue'),
+        meta: {
+        title: '火热专业',
+        freeAuth: true
+        }
+    },
 ];
 
 const router = createRouter({
