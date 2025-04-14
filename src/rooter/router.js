@@ -28,6 +28,15 @@ const routes = [
         freeAuth: true
         }
     },
+    {
+        path: '/caidan',
+        name: 'caidan',
+        component: () => import('../pages/caidan.vue'),
+        meta: {
+        title: '菜单',
+        freeAuth: true
+        }
+    },
 ];
 
 const router = createRouter({
