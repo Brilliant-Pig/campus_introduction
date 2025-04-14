@@ -1,4 +1,6 @@
 <template>
+  <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css' /> 
+  <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css' /> 
   <div class="gallery-container">
     <h2 class="gallery-title">{{ title }}</h2>
     <div 
@@ -135,9 +137,12 @@ export default {
 }
 
 .gallery-title {
-  font-size: 2rem;
+  font-size: 3rem;
   margin-bottom: 2rem;
   color: #333;
+  font-family:'MaokenAssortedSans';
+  font-weight:'400'
+
 }
 
 .gallery-viewport {
@@ -195,4 +200,6 @@ export default {
     --itemHeight: 350px;
   }
 }
+@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";
+@import "https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css"
 </style>
