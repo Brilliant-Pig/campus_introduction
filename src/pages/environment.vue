@@ -39,7 +39,8 @@ export default {
         { image: 'https://pic1.imgdb.cn/item/67f8e98988c538a9b5cb0516.png' },
         { image: 'https://pic1.imgdb.cn/item/67f8e98a88c538a9b5cb051f.png' },
         { image: 'https://pic1.imgdb.cn/item/67f8e8ba88c538a9b5cb027d.png' },
-        { image: 'https://pic1.imgdb.cn/item/67f8e98988c538a9b5cb0514.png' }
+        { image: 'https://pic1.imgdb.cn/item/67f8e98988c538a9b5cb0514.png' },
+        { image: 'https://pic1.imgdb.cn/item/67fce0dc88c538a9b5d0cbc8.jpg' },
       ]
     }
   }

@@ -2,8 +2,6 @@
   <button 
     class="shiny-button"
     :style="{ '--gradient-position': gradientPosition }"
-    @mousemove="handleMouseMove"
-    @mouseleave="resetAnimation"
     @click="$emit('click', $event)"
   >
     {{ text }}
@@ -13,7 +11,7 @@
 <script>
 export default {
   name: 'ShinyButton',
-  emits: ['click'],  // 声明组件会触发click事件
+  emits: ['click'],
   props: {
     text: {
       type: String,
@@ -23,24 +21,14 @@ export default {
   data() {
     return {
       gradientPosition: '100%',
-      animationInterval: null,
-      isHovered: false
+      animationInterval: null
     }
   },
+  mounted() {
+    this.startAnimation()
+  },
   methods: {
-    handleMouseMove(e) {
-      if (!this.isHovered) {
-        this.isHovered = true
-        this.startAnimation()
-      }
-      
-      const rect = e.target.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      this.gradientPosition = `${(x / rect.width) * 100}%`
-    },
     startAnimation() {
-      if (this.animationInterval) clearInterval(this.animationInterval)
-      
       let direction = -1
       let position = 100
       
@@ -55,14 +43,6 @@ export default {
         
         this.gradientPosition = `${position}%`
       }, 50)
-    },
-    resetAnimation() {
-      this.isHovered = false
-      if (this.animationInterval) {
-        clearInterval(this.animationInterval)
-        this.animationInterval = null
-      }
-      this.gradientPosition = '100%'
     }
   },
   beforeUnmount() {

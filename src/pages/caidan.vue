@@ -1,5 +1,5 @@
 <template>
-  <div style="position: relative; width: 100%; height: 100%">
+  <div style="position: fixed; width: 100%; height: 100%">
     <canvas
       id="infinite-grid-menu-canvas"
       ref="canvasRef"
@@ -753,7 +753,7 @@ void main() {
 
     let positions = this.instancePositions.map((p) => vec3.transformQuat(vec3.create(), p, this.control.orientation));
     const scale = 0.25;
-    const SCALE_INTENSITY = 0.6;
+    const SCALE_INTENSITY = 0.5;
     positions.forEach((p, ndx) => {
       const s = (Math.abs(p[2]) / this.SPHERE_RADIUS) * SCALE_INTENSITY + (1 - SCALE_INTENSITY);
       const finalScale = s * scale;
@@ -1107,19 +1107,7 @@ export default {
   transition: 0.1s ease;
 }
 
-@media (max-width: 1200px) {
-  .face-title {
-    font-size: 2rem;
-    left: 5%;
-  }
-  
-  .face-description {
-    font-size: 1rem;
-    right: 5%;
-  }
-}
-
-@media (max-width: 768px) {
+@media (max-width: 100%) {
   .face-title, .face-description {
     font-size: 1.5rem;
     position: static;
