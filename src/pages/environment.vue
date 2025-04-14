@@ -1,6 +1,5 @@
 <template>
   <div class="environment-container">
-    <!-- 修改背景图实现方式 -->
     <div class="background"></div>
     <CircularGallery
       title="校园风景"
@@ -10,15 +9,26 @@
       :itemWidth="380"
       :itemHeight="250"
     />
+    <div class="button-container">
+      <ShinyButton text="点击观看3D校园" @click="goTo3DCampus"/>
+    </div>
   </div>
 </template>
 
 <script>
 import CircularGallery from '../components/photo.vue'
+import ShinyButton from '../components/button.vue'
 
 export default {
   components: {
-    CircularGallery
+    CircularGallery,
+    ShinyButton,
+  },
+  methods: {
+    goTo3DCampus() {
+      window.open('https://www.720yun.com/t/48vksb2qz2q?scene_id=86650782', '_blank');
+    }
+
   },
   data() {
     return {
@@ -42,6 +52,9 @@ export default {
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .background {
@@ -55,12 +68,13 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   z-index: -1;
-  filter: brightness(0.8); /* 可选：调整背景亮度 */
+  filter: brightness(0.8);
   opacity: 0.7;
 }
 
-.gallery-container {
+.button-container {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  margin-top: 20px;
 }
 </style>
