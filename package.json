@@ -11,13 +11,17 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
     "@react-spring/web": "^9.7.5",
+    "@vueuse/motion": "^3.0.3",
     "element-plus": "^2.9.7",
+    "framer-motion": "^12.6.5",
     "gl-matrix": "^3.4.3",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.26.10",
     "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/compiler-sfc": "^3.5.13",
     "unplugin-auto-import": "^19.1.2",
     "unplugin-vue-components": "^28.4.1",
     "vite": "^6.2.0"

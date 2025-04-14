@@ -37,6 +37,24 @@ const routes = [
         freeAuth: true
         }
     },
+    {
+        path: '/environment',
+        name: 'Environment',
+        component: () => import('../pages/environment.vue'),
+        meta: {
+        title: '校园环境',
+        freeAuth: true
+        }
+    },
+    {
+        path: '/live',
+        name: 'Live',
+        component: () => import('../pages/live.vue'),
+        meta: {
+        title: '校园生活',
+        freeAuth: true
+        }
+    },
 ];
 
 const router = createRouter({

@@ -1023,15 +1023,6 @@ export default {
   border: 5px solid #000;
 }
 
-.face-title {
-  user-select: none;
-  position: absolute;
-  font-weight: 900;
-  font-size: 4rem;
-  left: 1.6em;
-  top: 50%;
-}
-
 .action-button-icon {
   user-select: none;
   position: relative;
@@ -1042,7 +1033,7 @@ export default {
 
 .face-title {
   position: absolute;
-  left: 15%;  /* 调整左侧位置 */
+  left: 5%;  /* 调整左侧位置 */
   top: 50%;
   transform: translateY(-50%);
   font-size: 3rem;

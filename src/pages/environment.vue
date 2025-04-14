@@ -1,0 +1,66 @@
+<template>
+  <div class="environment-container">
+    <!-- 修改背景图实现方式 -->
+    <div class="background"></div>
+    <CircularGallery
+      title="校园风景"
+      :items="galleryItems"
+      :speed="0.25"
+      :radius="350"
+      :itemWidth="380"
+      :itemHeight="250"
+    />
+  </div>
+</template>
+
+<script>
+import CircularGallery from '../components/photo.vue'
+
+export default {
+  components: {
+    CircularGallery
+  },
+  data() {
+    return {
+      galleryItems: [
+        { image: 'https://pic1.imgdb.cn/item/67f8e7ab88c538a9b5caffd7.png' },
+        { image: 'https://pic1.imgdb.cn/item/67f8e8ba88c538a9b5cb027b.png' },
+        { image: 'https://pic1.imgdb.cn/item/67f8e96e88c538a9b5cb04be.png' },
+        { image: 'https://pic1.imgdb.cn/item/67f8e98988c538a9b5cb0516.png' },
+        { image: 'https://pic1.imgdb.cn/item/67f8e98a88c538a9b5cb051f.png' },
+        { image: 'https://pic1.imgdb.cn/item/67f8e8ba88c538a9b5cb027d.png' },
+        { image: 'https://pic1.imgdb.cn/item/67f8e98988c538a9b5cb0514.png' }
+      ]
+    }
+  }
+}
+</script>
+
+<style scoped>
+.environment-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://www.gdmu.edu.cn/images/banner/bn04.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  filter: brightness(0.8); /* 可选：调整背景亮度 */
+  opacity: 0.7;
+}
+
+.gallery-container {
+  position: relative;
+  z-index: 1;
+}
+</style>
