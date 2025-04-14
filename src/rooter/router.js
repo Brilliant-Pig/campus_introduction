@@ -10,6 +10,15 @@ const routes = [
         freeAuth: true
         }
     },
+    {
+        path: '/second',
+        name: 'second',
+        component: () => import('../pages/second.vue'),
+        meta: {
+        title: '师资',
+        freeAuth: true
+        }
+    },
 ];
 
 const router = createRouter({
