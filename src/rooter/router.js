@@ -11,6 +11,24 @@ const routes = [
         }
     },
     {
+        path: '/second',
+        name: 'second',
+        component: () => import('../pages/second.vue'),
+        meta: {
+        title: '师资',
+        freeAuth: true
+        }
+    },
+    {
+        path: '/third',
+        name: 'third',
+        component: () => import('../pages/third.vue'),
+        meta: {
+        title: '火热专业',
+        freeAuth: true
+        }
+    },
+    {
         path: '/caidan',
         name: 'caidan',
         component: () => import('../pages/caidan.vue'),
