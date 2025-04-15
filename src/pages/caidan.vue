@@ -1,3 +1,4 @@
+<!-- **此页面为menu，用于链接各个页面的导航 -->
 <template>
   <div style="position: fixed; width: 100%; height: 100%">
     <canvas
@@ -898,42 +899,42 @@ export default {
   props: {
     items: {
       type: Array,
-      default: () => [
+      default: () => [//此处开始对各个网页链接的初始化
         {
-          image: 'https://picsum.photos/300/300?grayscale',
-          link: 'https://google.com/',
+          image: 'https://pic1.imgdb.cn/item/67fe21d188c538a9b5d1a025.png',
+          link: 'http://localhost:5173/third',
           title: '火热专业',
           description: '内含历来分数线哦'
         },
         {
-          image: 'https://picsum.photos/400/400?grayscale',
-          link: 'https://google.com/',
+          image: 'https://pic1.imgdb.cn/item/67fe224988c538a9b5d1a086.png',
+          link: 'http://localhost:5173/live',
           title: '学校生活',
           description: '你知道吗？广东医宿舍最舒服！还有最美味食堂和最长的小吃街三饭！出行还有地铁！'
         },
         {
-          image: 'https://picsum.photos/500/500?grayscale',
-          link: 'https://google.com/',
+          image: 'https://pic1.imgdb.cn/item/67fe1d5288c538a9b5d19ba3.png',
+          link: 'http://localhost:5173/first',
           title: '学生成长',
           description: '你知道吗？我们学校的社团比赛应有尽有！贯穿学术、文艺、体育、公益等各个方面！'
         },
         {
-          image: 'https://picsum.photos/600/600?grayscale',
-          link: 'https://google.com/',
+          image: 'https://pic1.imgdb.cn/item/67fe1ddc88c538a9b5d19c2c.png',
+          link: 'http://localhost:5173/environment',
           title: '校园风景',
           description: '你知道吗？广东医校园风景犹如花园岭一般！有最美的图书馆和最美的教学楼！'
         },
         {
-          image: 'https://picsum.photos/600/600?grayscale',
-          link: 'https://google.com/',
+          image: 'https://pic1.imgdb.cn/item/67fe209488c538a9b5d19eef.png',
+          link: 'http://localhost:5173/second',
           title: '教学资源',
-          description: '你知道吗？广东医有最牛的科研团队和最强的师资力量！'
+          description: '你知道吗？广东医有超牛的科研团队和非常强的师资力量！'
         },
         {
-          image: 'https://picsum.photos/600/600?grayscale',
-          link: 'https://google.com/',
+          image: 'https://pic1.imgdb.cn/item/67fe209f88c538a9b5d19f01.png',
+          link: 'https://www.gdmu.edu.cn/xxgk/xg_xx_xh.htm',
           title: '学校概况',
-          description: '内含校史，校训，校徽，校歌哦'
+          description: '内含校史，校训，校徽，校歌哦(外链跳转)'
         },
       ]
     }
@@ -950,7 +951,7 @@ export default {
       } else {
         console.log('Internal route:', activeItem.value.link);
       }
-    };
+    };//此处为页面跳转逻辑
 
     onMounted(() => {
       const canvas = canvasRef.value;
