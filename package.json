@@ -11,10 +11,12 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
     "@react-spring/web": "^9.7.5",
+    "@types/gsap": "^1.20.2",
     "@vueuse/motion": "^3.0.3",
     "element-plus": "^2.9.7",
     "framer-motion": "^12.6.5",
     "gl-matrix": "^3.4.3",
+    "gsap": "^3.12.7",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
@@ -27,5 +29,3 @@
     "vite": "^6.2.0"
   }
 }
-
-
