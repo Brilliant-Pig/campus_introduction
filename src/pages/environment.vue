@@ -49,7 +49,7 @@ export default {
 
 <style scoped>
 .environment-container {
-  position: relative;
+  position: flex;
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -74,8 +74,8 @@ export default {
 }
 
 .button-container {
-  position: relative;
+  position: flex;
   z-index: 2;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 </style>
