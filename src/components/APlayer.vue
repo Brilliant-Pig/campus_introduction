@@ -14,9 +14,9 @@ export default {
         return {
             player:null,
             audios: [
-                {   name: 'Song1',
+                {   name: '向阳青春-BGM',
                     url: '/music/BGM.mp3',
-                    // cover: ''
+                    cover: 'https://pic1.imgdb.cn/item/67ffb67c88c538a9b5d47252.png'
                 },
             ]
         };
