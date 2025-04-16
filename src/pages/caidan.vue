@@ -30,6 +30,7 @@
 <script>
 import { ref, onMounted, onUnmounted } from 'vue';
 import { mat4, quat, vec2, vec3 } from 'gl-matrix';
+import { useRouter } from 'vue-router';
 
 const defaultItems = [
   {
@@ -902,31 +903,31 @@ export default {
       default: () => [//此处开始对各个网页链接的初始化
         {
           image: 'https://pic1.imgdb.cn/item/67fe21d188c538a9b5d1a025.png',
-          link: 'http://localhost:5173/third',
+          link: 'third',
           title: '火热专业',
           description: '内含历来分数线哦'
         },
         {
           image: 'https://pic1.imgdb.cn/item/67fe224988c538a9b5d1a086.png',
-          link: 'http://localhost:5173/live',
+          link: 'live',
           title: '学校生活',
           description: '你知道吗？广东医宿舍最舒服！还有最美味食堂和最长的小吃街三饭！出行还有地铁！'
         },
         {
           image: 'https://pic1.imgdb.cn/item/67fe1d5288c538a9b5d19ba3.png',
-          link: 'http://localhost:5173/first',
+          link: 'first',
           title: '学生成长',
           description: '你知道吗？我们学校的社团比赛应有尽有！贯穿学术、文艺、体育、公益等各个方面！'
         },
         {
           image: 'https://pic1.imgdb.cn/item/67fe1ddc88c538a9b5d19c2c.png',
-          link: 'http://localhost:5173/environment',
+          link: 'environment',
           title: '校园风景',
           description: '你知道吗？广东医校园风景犹如花园岭一般！有最美的图书馆和最美的教学楼！'
         },
         {
           image: 'https://pic1.imgdb.cn/item/67fe209488c538a9b5d19eef.png',
-          link: 'http://localhost:5173/second',
+          link: 'second',
           title: '教学资源',
           description: '你知道吗？广东医有超牛的科研团队和非常强的师资力量！'
         },
@@ -943,15 +944,23 @@ export default {
     const canvasRef = ref(null);
     const activeItem = ref(null);
     const isMoving = ref(false);
+    const router = useRouter();
+
 
     const handleButtonClick = () => {
-      if (!activeItem.value?.link) return;
-      if (activeItem.value.link.startsWith('http')) {
-        window.open(activeItem.value.link, '_blank');
-      } else {
-        console.log('Internal route:', activeItem.value.link);
-      }
-    };//此处为页面跳转逻辑
+        if (!activeItem.value?.link) return;
+        const targetPath = `/${activeItem.value.link}`; // 提取 link 并在前面加 '/'
+        router.push({ path: targetPath }); // 使用提取后的路径
+    };
+    
+    // const handleButtonClick = () => {
+    //   if (!activeItem.value?.link) return;
+    //   if (activeItem.value.link.startsWith('http')) {
+    //     window.open(activeItem.value.link, '_blank');
+    //   } else {
+    //     console.log('Internal route:', activeItem.value.link);
+    //   }
+    // };//此处为页面跳转逻辑
 
     onMounted(() => {
       const canvas = canvasRef.value;
