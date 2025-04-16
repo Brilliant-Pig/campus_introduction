@@ -133,7 +133,7 @@ export default {
   width: 100%;
   padding: 2rem 0;
   text-align: center;
-  perspective: 1200px;
+  perspective: auto;
 }
 
 .gallery-title {
