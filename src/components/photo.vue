@@ -137,7 +137,7 @@ export default {
 }
 
 .gallery-title {
-  font-size: 3rem;
+  font-size: 3.8rem;
   margin-bottom: 2rem;
   color: #333;
   font-family:'MaokenAssortedSans';
