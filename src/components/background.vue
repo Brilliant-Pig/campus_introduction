@@ -10,7 +10,7 @@
     export default {
     name: "BackGround",
         props: {
-        particleCount: { type: Number, default: 450 },
+        particleCount: { type: Number, default: 430 },
         particleSpread: { type: Number, default: 10 },
         speed: { type: Number, default: 0.1 },
         particleColors: { type: Array, default: () => ["#ffffff", "#ffffff"] },
@@ -200,6 +200,6 @@
     height: 100%;
     overflow: hidden;
     z-index: -1;
-    background-color: black;
+    background: linear-gradient(135deg, #1e1e3d 0%, #11111a 85%) ;
 }
     </style>
