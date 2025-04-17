@@ -55,6 +55,15 @@ const routes = [
         freeAuth: true
         }
     },
+    {
+        path: '/schooljump',
+        name: 'schooljump',
+        component: () => import('../pages/schooljump.vue'),
+        meta: {
+        title: '跳转到校徽官网',
+        freeAuth: true
+        }
+    },
 ];
 
 const router = createRouter({

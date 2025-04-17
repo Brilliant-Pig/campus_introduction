@@ -938,7 +938,7 @@ export default {
         },
         {
           image: 'https://pic1.imgdb.cn/item/67fe209f88c538a9b5d19f01.png',
-          link: 'https://www.gdmu.edu.cn/xxgk/xg_xx_xh.htm',
+          link: 'schooljump',
           title: '学校概况',
           description: '内含校史，校训，校徽，校歌哦(外链跳转)'
         },
