@@ -13,10 +13,12 @@
     "@react-spring/web": "^9.7.5",
     "@types/gsap": "^1.20.2",
     "@vueuse/motion": "^3.0.3",
+    "aplayer": "^1.10.1",
     "element-plus": "^2.9.7",
     "framer-motion": "^12.6.5",
     "gl-matrix": "^3.4.3",
     "gsap": "^3.12.7",
+    "ogl": "^1.0.11",
     "three": "^0.175.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"

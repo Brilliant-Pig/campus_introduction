@@ -510,10 +510,24 @@ anymatch@~3.1.2:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
+aplayer@^1.10.1:
+  version "1.10.1"
+  resolved "https://registry.npmmirror.com/aplayer/-/aplayer-1.10.1.tgz"
+  integrity sha512-HAfyxgCUTLAqtYlxzzK9Fyqg6y+kZ9CqT1WfeWE8FSzwspT6oBqWOZHANPHF3RGTtC33IsyEgrfthPDzU5r9kQ==
+  dependencies:
+    balloon-css "^0.5.0"
+    promise-polyfill "7.1.0"
+    smoothscroll "0.4.0"
+
 async-validator@^4.2.5:
   version "4.2.5"
   resolved "https://registry.npmmirror.com/async-validator/-/async-validator-4.2.5.tgz"
   integrity sha512-7HhHjtERjqlNbZtqNqy2rckN/SpOOlmDliet+lP7k+eKZEjPk3DgyeU9lIXLdeLz0uBbbVp+9Qdow9wJWgwwfg==
+
+balloon-css@^0.5.0:
+  version "0.5.2"
+  resolved "https://registry.npmmirror.com/balloon-css/-/balloon-css-0.5.2.tgz"
+  integrity sha512-zheJpzwyNrG4t39vusA67v3BYg1HTVXOF8cErPEHzWK88PEOFwgo6Ea9VHOgOWNMgeuOtFVtB73NE2NWl9uDyQ==
 
 binary-extensions@^2.0.0:
   version "2.3.0"
@@ -1037,6 +1051,11 @@ nypm@^0.6.0:
     pkg-types "^2.0.0"
     tinyexec "^0.3.2"
 
+ogl@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.npmmirror.com/ogl/-/ogl-1.0.11.tgz"
+  integrity sha512-kUpC154AFfxi16pmZUK4jk3J+8zxwTWGPo03EoYA8QPbzikHoaC82n6pNTbd+oEaJonaE8aPWBlX7ad9zrqLsA==
+
 ohash@^2.0.11:
   version "2.0.11"
   resolved "https://registry.npmmirror.com/ohash/-/ohash-2.0.11.tgz"
@@ -1118,6 +1137,11 @@ postcss@^8.4.48, postcss@^8.5.3:
     nanoid "^3.3.8"
     picocolors "^1.1.1"
     source-map-js "^1.2.1"
+
+promise-polyfill@7.1.0:
+  version "7.1.0"
+  resolved "https://registry.npmmirror.com/promise-polyfill/-/promise-polyfill-7.1.0.tgz"
+  integrity sha512-P6NJ2wU/8fac44ENORsuqT8TiolKGB2u0fEClPtXezn7w5cmLIjM/7mhPlTebke2EPr6tmqZbXvnX0TxwykGrg==
 
 quansync@^0.2.8:
   version "0.2.10"
@@ -1231,6 +1255,11 @@ slash@^5.1.0:
   version "5.1.0"
   resolved "https://registry.npmmirror.com/slash/-/slash-5.1.0.tgz"
   integrity sha512-ZA6oR3T/pEyuqwMgAKT0/hAv8oAXckzbkmR0UkUosQ+Mc4RxGoJkRmwHgHufaenlyAgE1Mxgpdcrf75y6XcnDg==
+
+smoothscroll@0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npmmirror.com/smoothscroll/-/smoothscroll-0.4.0.tgz"
+  integrity sha512-sggQ3U2Un38b3+q/j1P4Y4fCboCtoUIaBYoge+Lb6Xg1H8RTIif/hugVr+ErMtIDpvBbhQfTjtiTeYAfbw1ZGQ==
 
 source-map-js@^1.2.0, source-map-js@^1.2.1:
   version "1.2.1"

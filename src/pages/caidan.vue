@@ -1,5 +1,6 @@
 <!-- **此页面为menu，用于链接各个页面的导航 -->
 <template>
+  <background></background>
   <div style="position: fixed; width: 100%; height: 100%">
     <canvas
       id="infinite-grid-menu-canvas"
@@ -28,6 +29,7 @@
 </template>
 
 <script>
+import BackGround from "../components/background.vue";
 import { ref, onMounted, onUnmounted } from 'vue';
 import { mat4, quat, vec2, vec3 } from 'gl-matrix';
 import { useRouter } from 'vue-router';
@@ -508,7 +510,7 @@ class InfiniteGridMenu {
   }
 
   #init(onInit) {
-    this.gl = this.canvas.getContext('webgl2', { antialias: true, alpha: false });
+    this.gl = this.canvas.getContext('webgl2', { antialias: true, alpha: true, });
     const gl = this.gl;
     if (!gl) {
       throw new Error('No WebGL 2 context!');
@@ -897,6 +899,9 @@ void main() {
 
 export default {
   name: 'InfiniteMenu',
+  components: {
+    BackGround,
+  },
   props: {
     items: {
       type: Array,
