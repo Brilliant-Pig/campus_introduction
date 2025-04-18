@@ -16,7 +16,10 @@
 </template>
 <script>
 </script>
-<style >
+<style>
+@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-SemiBold/result.css";
+@import "https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css";
+
 h5 {
     font-size: 90px;
     color: rgb(192, 14, 49);
@@ -24,7 +27,6 @@ h5 {
   font-family:'MaokenAssortedSans';
   font-weight:'700'
 }
-@import "https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css";
 .container {
     display: flex;
     align-items: center;
@@ -45,5 +47,4 @@ p{
    font-weight:'400';
     
 }
-@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-SemiBold/result.css";
 </style>

@@ -1010,6 +1010,8 @@ export default {
 </script>
 
 <style scoped>
+@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";
+
 #infinite-grid-menu-canvas {
   cursor: grab;
   width: 100%;
@@ -1132,4 +1134,5 @@ export default {
     max-width: 100%;
   }
 }
-@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";</style>
+
+</style>
