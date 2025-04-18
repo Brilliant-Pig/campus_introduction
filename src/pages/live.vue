@@ -346,6 +346,9 @@ onUnmounted(() => {
 </script>
 
 <style>
+@import "https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css";
+@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";
+
 .my-scroll-bar {
   overflow: auto;
   transition: transform 2.4s cubic-bezier(0.1, 0.79, 0.11, 0.82);
@@ -431,7 +434,5 @@ font-weight:'400';
 }
 }
 
-@import "https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css";
-@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";
 
 </style>
