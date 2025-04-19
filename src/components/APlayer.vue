@@ -15,8 +15,8 @@ export default {
             player:null,
             audios: [
                 {   name: '向阳青春-BGM',
-                    url: '/music/BGM.mp3',
-                    cover: 'https://pic1.imgdb.cn/item/67ffb67c88c538a9b5d47252.png'
+                    url: '../src/public/music/BGM.mp3',
+                    cover: 'https://pic1.imgdb.cn/item/6803419958cb8da5c8b4da72.png'
                 },
             ]
         };

@@ -21,3 +21,14 @@ router.get('/getUserIdByName', async (req, res, next) => {
     const result = await userService.getUserIdByName(userName);
     res.ResultVO(0, '成功', result);
 });
+
+router.post('/submitSurvey', async (req, res, next) => {
+    try {
+        const surveyData = req.body;
+        const result = await userService.saveSurvey(surveyData);
+        res.json({ code: 0, message: '成功', data: result });
+    } catch (error) {
+        console.error('提交问卷出错:', error);
+        res.status(500).json({ code: -1, message: '提交问卷失败' });
+    }
+});

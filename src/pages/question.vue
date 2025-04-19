@@ -96,68 +96,101 @@
             </div>
           </div>
   
-          <!-- 第三步：问题收集 -->
-          <div v-else-if="currentStep === 3" class="survey-step">
-            <h2><span class="emoji">❓</span> 你最想解锁我校哪个隐藏彩蛋？</h2>
-            
-            <div class="question-examples">
-              <p>以下问题供参考：</p>
-              <ul>
-                <li v-for="(example, index) in questionExamples" :key="index" @click="addExampleQuestion(example)">
-                  {{ example }}
-                </li>
-              </ul>
-            </div>
-            
-            <div class="questions-container">
-              <div v-for="(question, index) in form.questions" :key="index" class="question-item">
-                <label>问题 {{ index + 1 }}</label>
-                <div class="question-input-group">
-                  <input 
-                    v-model="question.text" 
-                    type="text" 
-                    :placeholder="'请输入您的问题 ' + (index + 1)"
-                  >
-                  <button 
-                    v-if="index > 0" 
-                    @click="removeQuestion(index)"
-                    class="remove-btn"
-                  >删除</button>
-                </div>
-              </div>
-            </div>
-            <button @click="addQuestion" class="add-question-btn">
-              <span>+</span> 添加问题
-            </button>
-          </div>
+<!-- 第三步：问题收集 -->
+<div v-else-if="currentStep === 3" class="survey-step">
+  <h2><span class="emoji">❓</span> 你最想解锁我校哪个隐藏彩蛋？</h2>
   
-          <!-- 第四步：联系方式 -->
-          <div v-else-if="currentStep === 4" class="survey-step">
-            <h2><span class="emoji">📞</span> 接头方式</h2>
-            
-            <div class="form-group">
-              <label><span class="emoji">📱</span> 手机号码 <span class="hint">(用于联系获取奖品)</span></label>
-              <input v-model="form.phone" type="tel" placeholder="请填写常用手机号">
-            </div>
-            
-            <div class="form-group">
-              <label><span class="emoji">📧</span> 电子邮箱 <span class="hint">(用于联系获取奖品)</span></label>
-              <input v-model="form.email" type="email" placeholder="请填写常用邮箱">
-            </div>
-            
-            <div class="form-group">
-              <label><span class="emoji">💬</span> 您希望我们通过什么方式联系您？</label>
-              <div class="contact-methods">
-                <label v-for="method in contactMethods" :key="method.value" class="method-card">
-                  <input type="radio" v-model="form.preferredContact" :value="method.value">
-                  <div class="method-content">
-                    <span class="method-emoji">{{ method.emoji }}</span>
-                    <span class="method-name">{{ method.label }}</span>
-                  </div>
-                </label>
-              </div>
-            </div>
-          </div>
+  <!-- 预定义问题列表 -->
+  <div class="question-examples">
+    <p>点击下方问题快速添加：</p>
+    <div class="example-buttons">
+      <button 
+        v-for="(example, index) in questionExamples" 
+        :key="index"
+        @click="addExampleQuestion(example)"
+        :disabled="form.questions.length >= maxQuestions && !hasEmptyQuestion"
+        class="example-btn"
+      >
+        {{ example }}
+      </button>
+    </div>
+  </div>
+  
+  <!-- 问题输入区 -->
+  <div class="questions-container">
+    <div v-for="(question, index) in form.questions" :key="index" class="question-item">
+      <label>问题 {{ index + 1 }}</label>
+      <div class="question-input-group">
+        <input
+          v-model="question.text"
+          type="text"
+          :placeholder="'输入问题或从上方选择'"
+        >
+        <button
+          v-if="index > 0"
+          @click="removeQuestion(index)"
+          class="remove-btn"
+        >
+          删除
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <button
+    @click="addQuestion"
+    class="add-question-btn"
+    :disabled="form.questions.length >= maxQuestions"
+  >
+    <span>+</span> 添加新问题 ({{ form.questions.length }}/{{ maxQuestions }})
+  </button>
+</div>
+  
+<!-- 第四步：联系方式 -->
+<div v-else-if="currentStep === 4" class="survey-step">
+  <h2><span class="emoji">📞</span> 接头方式</h2>
+  
+  <div class="form-group">
+    <label><span class="emoji">💬</span> 您希望我们通过什么方式联系您？</label>
+    <div class="contact-methods">
+      <label v-for="method in contactMethods" :key="method.value" class="method-card">
+        <input 
+          type="radio" 
+          v-model="form.preferredContact" 
+          :value="method.value"
+          @change="resetContactFields(method.value)"
+        >
+        <div class="method-content">
+          <span class="method-emoji">{{ method.emoji }}</span>
+          <span class="method-name">{{ method.label }}</span>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <!-- 动态显示对应的联系方式输入框 -->
+  <div v-if="form.preferredContact">
+    <div class="form-group" v-if="form.preferredContact === 'phone'">
+      <label><span class="emoji">📱</span> 手机号码 <span class="hint">(用于联系获取奖品)</span></label>
+      <input v-model="form.phone" type="tel" placeholder="请填写常用手机号">
+    </div>
+    
+    <div class="form-group" v-if="form.preferredContact === 'email'">
+      <label><span class="emoji">📧</span> 电子邮箱 <span class="hint">(用于联系获取奖品)</span></label>
+      <input v-model="form.email" type="email" placeholder="请填写常用邮箱">
+    </div>
+    
+    <div class="form-group" v-if="form.preferredContact === 'wechat'">
+      <label><span class="emoji">💬</span> 微信 <span class="hint">(用于联系获取奖品)</span></label>
+      <input v-model="form.wechat" type="text" placeholder="请填写正确微信号">
+    </div>
+    
+    <div class="form-group" v-if="form.preferredContact === 'qq'">
+      <label><span class="emoji">🐧</span> QQ <span class="hint">(用于联系获取奖品)</span></label>
+      <input v-model="form.qq" type="text" placeholder="请填写正确QQ号">
+    </div>
+  </div>
+</div>
   
           <!-- 完成页 -->
           <div v-else class="thank-you-step">
@@ -239,17 +272,20 @@
       totalSteps: 4,
       isBouncing: false,
       ageWarning: false,
+      maxQuestions: 5,
       form: {
-        name: '',
-        age: '',
-        gender: '',
-        channels: [],
-        interest: '',
-        rating: 0,
-        questions: [{ text: '' }],
-        phone: '',
-        email: '',
-        preferredContact: '',
+      name: '',
+      age: '',
+      gender: '',
+      channels: [],
+      interest: '',
+      rating: 0,
+      questions: [{ text: '' }],
+      phone: '',
+      email: '',
+      qq: '',
+      wechat: '',
+      preferredContact: ''
         },
         steps: [
           { number: 1, label: '基本信息', emoji: '👤' },
@@ -305,19 +341,23 @@
         return `${(this.currentStep / this.totalSteps) * 100}%`;
       },
       isStepValid() {
-        switch(this.currentStep) {
-          case 1:
-            return this.form.name && this.form.age && this.form.gender && this.form.age >= 16 && this.form.age <= 25;
-          case 2:
-            return this.form.channels.length > 0 && this.form.interest;
-          case 3:
-            return this.form.questions.some(q => q.text.trim() !== '');
-          case 4:
-            return this.form.phone && this.form.email && this.form.preferredContact;
-          default:
-            return true;
+    switch(this.currentStep) {
+      // ...其他步骤的验证
+      case 4:
+        // 根据选择的首选联系方式验证对应的字段
+        if (!this.form.preferredContact) return false;
+        
+        switch(this.form.preferredContact) {
+          case 'phone': return !!this.form.phone;
+          case 'email': return !!this.form.email;
+          case 'wechat': return !!this.form.wechat;
+          case 'qq': return !!this.form.qq;
+          default: return false;
         }
-      },
+      default:
+        return true;
+    }
+  },
       filteredMajors() {
         if (!this.form.interest) return this.majors;
         const searchTerm = this.form.interest.toLowerCase();
@@ -325,9 +365,19 @@
           major.label.toLowerCase().includes(searchTerm) || 
           major.desc.toLowerCase().includes(searchTerm)
         );
-      }
+      },
+      hasEmptyQuestion() {
+      return this.form.questions.some(q => !q.text.trim());
+    },
     },
     methods: {
+      resetContactFields(selectedMethod) {
+    // 当切换首选联系方式时，清空其他联系方式
+    if (selectedMethod !== 'phone') this.form.phone = '';
+    if (selectedMethod !== 'email') this.form.email = '';
+    if (selectedMethod !== 'wechat') this.form.wechat = '';
+    if (selectedMethod !== 'qq') this.form.qq = '';
+  },
       bounceTitle() {
         this.isBouncing = true;
         setTimeout(() => this.isBouncing = false, 1000);
@@ -345,10 +395,47 @@
           this.currentStep--;
         }
       },
-      submitForm() {
-        console.log('表单提交:', this.form);
-        this.currentStep++;
-      },
+      async submitForm() {
+      try {
+        // 准备符合后端要求的数据结构
+        const formData = {
+      username: this.form.name,
+      age: this.form.age,
+      sex: this.form.gender,
+      major: this.form.interest,
+      questions: this.form.questions
+        .slice(0, 5) // 确保最多5个问题
+        .map(q => q.text || ''), // 提取问题文本
+      phone: this.form.phone,
+      email: this.form.email,
+      qq: this.form.qq,
+      wechat: this.form.wechat,
+      preferredContact: this.form.preferredContact
+    };
+        
+    const response = await fetch('http://127.0.0.1:33001/api/user/submitSurvey', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+        
+        const result = await response.json();
+        
+        if (response.ok && result.code === 0) {
+          this.currentStep++; // 跳转到完成页
+        } else {
+          throw new Error(result.message || '提交失败');
+        }
+      } catch (error) {
+        console.error('提交出错:', error);
+        ElNotification({
+          title: '错误',
+          message: '提交失败: ' + error.message,
+          type: 'error',
+          duration: 3000
+        });
+      }
+    },
       resetForm() {
         this.currentStep = 1;
         this.form = {
@@ -365,14 +452,46 @@
         };
       },
       addQuestion() {
+      if (this.form.questions.length < this.maxQuestions) {
         this.form.questions.push({ text: '' });
-      },
-      removeQuestion(index) {
-        this.form.questions.splice(index, 1);
-      },
-      addExampleQuestion(question) {
-        this.form.questions.push({ text: question });
-      },
+      } else {
+        this.showAlert(`最多只能添加${this.maxQuestions}个问题`);
+      }
+    },
+    removeQuestion(index) {
+      this.form.questions.splice(index, 1);
+    },
+    
+    // 显示提示
+    showAlert(message) {
+      alert(message);
+      // 或者使用Element Plus的提示
+      // ElNotification.warning({
+      //   title: '提示',
+      //   message: message,
+      //   duration: 2000
+      // });
+    },
+    
+    addExampleQuestion(example) {
+      if (this.form.questions.some(q => q.text === example)) {
+      this.showAlert('该问题已添加');
+      return;
+    }
+      
+    const emptyQuestion = this.form.questions.find(q => !q.text.trim());
+    if (emptyQuestion) {
+      emptyQuestion.text = example;
+    } 
+    // 没有空白问题但还可添加
+    else if (this.form.questions.length < this.maxQuestions) {
+      this.form.questions.push({ text: example });
+    }
+    // 已达上限
+    else {
+      this.showAlert(`最多只能添加${this.maxQuestions}个问题`);
+    }
+  },
       selectMajor(major) {
         this.form.interest = major.label;
         this.showSuggestions = false;
@@ -446,8 +565,18 @@
   }
   
   .form-group {
-    margin-bottom: 1.5rem;
-  }
+  transition: all 0.3s ease;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+/* 如果想让输入框有淡入效果 */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
   
   label {
     display: block;
@@ -864,4 +993,24 @@
       width: 100%;
     }
   }
+  .question-examples li {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.question-examples li:hover {
+  background-color: #f0f7ff;
+}
+
+.question-examples li.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.add-question-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
   </style>
