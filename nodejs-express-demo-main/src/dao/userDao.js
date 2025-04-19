@@ -39,3 +39,25 @@ exports.getUserIdByName = async (userName) => {
     const sqlParams = [userName];
     return await db.query(sql, sqlParams);
 };
+
+exports.saveSurvey = async (surveyData) => {
+    const sql = `
+        INSERT INTO survey_responses (
+            username, 
+            age, 
+            sex, 
+            major, 
+            question1, 
+            question2, 
+            question3, 
+            question4, 
+            question5,
+            phone,
+            email,
+            qq,
+            wechat
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+    const sqlParams = [surveyData.username, surveyData.age, surveyData.sex, surveyData.major, surveyData.question1, surveyData.question2, surveyData.question3, surveyData.question4, surveyData.question5, surveyData.phone, surveyData.email, surveyData.qq, surveyData.wechat];
+    return await db.query(sql, sqlParams);
+};
