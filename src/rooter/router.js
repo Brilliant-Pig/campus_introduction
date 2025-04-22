@@ -55,6 +55,15 @@ const routes = [
         freeAuth: true
         }
     },
+    {
+        path: '/manager',
+        name: 'Manager',
+        component: () => import('../pages/manager.vue'),
+        meta: {
+        title: '管理人员',
+        freeAuth: true
+        }
+    },
 ];
 
 const router = createRouter({
