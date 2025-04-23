@@ -1,11 +1,11 @@
 <template>
+<div id="Whole-Third">
   <div class="content-wrapper">
     <h1 class="main-title" style="color: brown;">火热专业</h1>
     <div class="video-intro-section">
       <div class="video-container">
         <video controls class="intro-video" poster="">
-          <source src="../assets/12345.mp4" type="video/mp4">
-          
+          <source src="https://introduction-video.oss-cn-shenzhen.aliyuncs.com/12345.mp4" type="video/mp4">
         </video>
       </div>
       <div class="intro-text">
@@ -100,13 +100,23 @@
       </div>
     </el-drawer>
   </div>
+    <div class="shiny-text-container">
+        <ShinyText text="← 返回菜单" :jump-duration="0.9" :shine-speed="3" color="white" @click="handleAction"/>
+    </div>
+</div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import ShinyText from '../components/ShinyText.vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+const handleAction = () => { 
+    router.push({ path: '/caidan'});
+};
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger)
 
@@ -364,7 +374,7 @@ onMounted(() => {
 
 <style>
 /* 全局样式 */
-body {
+#Whole-Third {
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   margin: 0;
   min-height: 100vh;
@@ -701,6 +711,15 @@ body {
   .intro-text p {
     font-size: 1rem;
   }
+}
+
+.shiny-text-container {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    z-index: 9999; /* 确保悬浮在最上层 */
+    /* 可选动画衔接 */
+    transition: all 0.3s ease; 
 }
 @import "https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css";
 @import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";
