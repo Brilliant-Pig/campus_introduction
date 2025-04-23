@@ -18,15 +18,25 @@ POST http://127.0.0.1:33001/api/user/submitSurvey
 Content-Type: application/json
 
 {
-    "username": "未来张主任",
+    "username": "测试用户",
     "age": 20,
     "sex": "male",
-    "major": "临床医学",
+    "major": "计算机科学",
+    "phone": "13800138000",
     "questions": [
-        {"text": "学校的宿舍条件怎么样？有空调吗？"},
-        {"text": "临床医学专业的实习医院有哪些？"},
-        {"text": ""},
-        {"text": ""},
-        {"text": ""}
+        {"text": "问题1内容"},
+        {"text": "问题2内容"}
     ]
+}
+### 获取未回答问题列表
+GET http://127.0.0.1:33001/api/user/getUnansweredQuestions
+Content-Type: application/json
+
+### 提交答案
+POST http://127.0.0.1:33001/api/user/submitAnswer
+Content-Type: application/json
+
+{
+    "question": "问题1内容",
+    "answer": "宿舍条件很好，全部配备空调。"
 }
