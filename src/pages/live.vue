@@ -229,6 +229,9 @@
 </div>
 </div>
 </div>
+<div class="shiny-text-container">
+    <ShinyText text="← 返回菜单" :jump-duration="0.9" :shine-speed="3" color="white" @click="handleAction"/>
+</div>
 </template>
 
 <script setup>
@@ -238,6 +241,13 @@ import { onMounted, onUnmounted } from "vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
+import ShinyText from '../components/ShinyText.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const handleAction = () => { 
+    router.push({ path: '/caidan'});
+};
 
 let scrollbox;
 const resizeBody = () => {
@@ -434,5 +444,12 @@ font-weight:'400';
 }
 }
 
-
+.shiny-text-container {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    z-index: 9999; /* 确保悬浮在最上层 */
+    /* 可选动画衔接 */
+    transition: all 0.3s ease; 
+}
 </style>

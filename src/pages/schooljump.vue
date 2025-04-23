@@ -3,11 +3,24 @@
     <transition name="fade">
         <div>
             <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css' /> 
-            <p>正在跳转至广东医科大学相关官方网站...</p>
-            <a ref="externalLink" href="https://www.gdmu.edu.cn/xxgk/xg_xx_xh.htm" style="display: none"></a>
+            <p class="jump">正在跳转至广东医科大学相关官方网站...</p>
+            <a ref="externalLink" href="https://www.gdmu.edu.cn/xxgk/xg_xx_xh.htm" style="display: none" target="_blank"></a>
         </div>
     </transition>
+    <div class="shiny-text-container">
+        <ShinyText text="← 返回菜单" :jump-duration="0.9" :shine-speed="3" color="" @click="handleAction"/>
+    </div>
 </template>
+
+<script setup>
+import ShinyText from '../components/ShinyText.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const handleAction = () => { 
+    router.push({ path: '/caidan'});
+};
+</script>
 
 <script>
 export default {
@@ -23,7 +36,7 @@ export default {
 <style>
 @import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-SemiBold/result.css";
 
-p{
+.jump {
 margin-top:45vh;
 margin-bottom: 0px;
 font-size: 80px; 
@@ -35,5 +48,14 @@ background-image: linear-gradient(120deg, #84fab0 0%, #62bbe8 100%);
 background-clip: text;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
+}
+
+.shiny-text-container {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    z-index: 9999; /* 确保悬浮在最上层 */
+    /* 可选动画衔接 */
+    transition: all 0.3s ease; 
 }
 </style>

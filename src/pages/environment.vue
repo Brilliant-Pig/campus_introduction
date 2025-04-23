@@ -1,5 +1,5 @@
 <template>
-  <div class="environment-container">
+<div class="environment-container">
     <div class="background"></div>
     <CircularGallery
       title="校园风景"
@@ -12,8 +12,21 @@
     <div class="button-container">
       <ShinyButton text="点击观看3D校园" @click="goTo3DCampus"/>
     </div>
-  </div>
+    <div class="shiny-text-container">
+        <ShinyText text="← 返回菜单" :jump-duration="0.9" :shine-speed="3" color="white" @click="handleAction"/>
+    </div>
+</div>
 </template>
+
+<script setup>
+import ShinyText from '../components/ShinyText.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const handleAction = () => { 
+    router.push({ path: '/caidan'});
+};
+</script>
 
 <script>
 import CircularGallery from '../components/photo.vue'
@@ -77,5 +90,14 @@ export default {
   position: flex;
   z-index: 2;
   margin-top: 50px;
+}
+
+.shiny-text-container {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    z-index: 9999; /* 确保悬浮在最上层 */
+    /* 可选动画衔接 */
+    transition: all 0.3s ease; 
 }
 </style>
