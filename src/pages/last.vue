@@ -1,5 +1,11 @@
 <template>
   <div class="zong">
+    <div class="shiny-text-container">
+        <ShinyText text="← 返回菜单" :jump-duration="0.9" :shine-speed="3" color="white" @click="Action"/>
+      </div>
+      <div class="shiny-container">
+        <ShinyText text="若还有疑问，请点击" :jump-duration="0.9" :shine-speed="3" color="white" @click="nextAction"/>
+      </div>
     <div class="faq-container">
       <h1 style="font-family:'MaokenAssortedSans'">问题解答</h1>
       <p style="font-family:'MaokenAssortedSans'; font-size: 50px">可点击问题查看解答</p>
@@ -30,8 +36,12 @@
   </template>
   
   <script>
+  import ShinyText from '../components/ShinyText.vue';
   export default {
     name: 'FAQComponent',
+    components: {
+      ShinyText,
+    },
     data() {
       return {
         faqItems: [
@@ -56,7 +66,13 @@
     methods: {
       toggleAnswer(index) {
         this.faqItems[index].isOpen = !this.faqItems[index].isOpen;
-      }
+      },
+      handleAction() { 
+        this.$router.push({ name: 'caidan' })
+      },
+      nextAction() { 
+        this.$router.push({ name: 'question' })
+      },
     }
   }
   </script>
@@ -122,5 +138,21 @@
     margin: 0;
     line-height: 1.6;
   }
+  .shiny-text-container {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    z-index: 9999; /* 确保悬浮在最上层 */
+    /* 可选动画衔接 */
+    transition: all 0.3s ease; 
+}
+.shiny-container {
+    position: fixed;
+    right: 50px;
+    bottom: 30px;
+    z-index: 9999; /* 确保悬浮在最上层 */
+    /* 可选动画衔接 */
+    transition: all 0.3s ease; 
+}
 @import"https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css"
   </style>
