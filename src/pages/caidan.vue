@@ -920,9 +920,9 @@ export default {
         },
         {
           image: 'https://pic1.imgdb.cn/item/67fe1d5288c538a9b5d19ba3.png',
-          link: 'first',
-          title: '学生成长',
-          description: '你知道吗？我们学校的社团比赛应有尽有！贯穿学术、文艺、体育、公益等各个方面！'
+          link: 'question',
+          title: '校园Q&A',
+          description: '建议浏览完所有网页信息在进入校园Q&A哦！若填写完Q&A并成功考入我们学校大家园，可凭借此信息在入校时候换取小礼品！'
         },
         {
           image: 'https://pic1.imgdb.cn/item/67fe1ddc88c538a9b5d19c2c.png',
@@ -938,7 +938,7 @@ export default {
         },
         {
           image: 'https://pic1.imgdb.cn/item/67fe209f88c538a9b5d19f01.png',
-          link: 'https://www.gdmu.edu.cn/xxgk/xg_xx_xh.htm',
+          link: 'schooljump',
           title: '学校概况',
           description: '内含校史，校训，校徽，校歌哦(外链跳转)'
         },
@@ -1010,6 +1010,8 @@ export default {
 </script>
 
 <style scoped>
+@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";
+
 #infinite-grid-menu-canvas {
   cursor: grab;
   width: 100%;
@@ -1132,4 +1134,5 @@ export default {
     max-width: 100%;
   }
 }
-@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";</style>
+
+</style>

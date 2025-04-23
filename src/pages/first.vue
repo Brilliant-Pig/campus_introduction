@@ -12,6 +12,9 @@
             <transition name="title-fade" appear @after-enter="handleAnimationEnd">
                 <p v-html="boldNumbers(message1)"></p >
             </transition>
+            <transition name="title-fade" appear @after-enter="handleAnimationEnd">
+                <p2>--广东医东莞校区传音阁~</p2>
+            </transition>
         </div>
         <div class="float-text1">∨</div>
         <div class="float-text2">∨</div>
@@ -98,6 +101,7 @@ transform: translateY(20px) scale(0.95);
 
 p{
 margin-top:36vh;
+margin-bottom: 0px;
 font-size: 125px; 
 text-align: center;
 font-family:'MaokenAssortedSans';
@@ -108,6 +112,25 @@ background-clip: text;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 }
+
+p1 {
+    font-size:1px;
+}
+
+p2 {
+margin-top:0px;
+margin-left:19%;
+font-size: 25px; 
+text-align: center;
+font-family:'MaokenAssortedSans';
+font-weight:'300';
+color: transparent;
+background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
 
 /* p ::after{
 content: attr(医路蔚蓝);
@@ -130,7 +153,7 @@ margin-top:0px;
 /* 以上为中央标题CSS */
 
 .float-text1 {
-margin-top: 22vh;
+margin-top: 17vh;
 animation: float 1.5s ease-in-out infinite;
 height:25px;
 color:white;
@@ -162,8 +185,4 @@ animation:
 50% { transform: scale(1.05); }
 }
 /* 以上为浮动箭头CSS */
-</style>
-
-<style>
-
 </style>

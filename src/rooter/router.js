@@ -64,6 +64,24 @@ const routes = [
         freeAuth: true
         }
     },
+    {
+        path: '/schooljump',
+        name: 'schooljump',
+        component: () => import('../pages/schooljump.vue'),
+        meta: {
+        title: '跳转到校徽官网',
+        freeAuth: true
+        }
+    },
+    {
+        path: '/question',
+        name: 'question',
+        component: () => import('../pages/question.vue'),
+        meta: {
+        title: '常见问题',
+        freeAuth: true
+        }
+    },
 ];
 
 const router = createRouter({

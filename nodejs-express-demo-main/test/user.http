@@ -1,0 +1,32 @@
+### 获取用户列表
+GET http://127.0.0.1:33001/api/user/getUserList
+Content-Type: application/json
+
+
+
+### 获取用户详细信息
+GET http://127.0.0.1:33001/api/user/getUserInfo
+    ?userId=1234
+
+
+### 获取用户信息，通过名字获取学号
+GET http://127.0.0.1:33001/api/user/getUserIdByName
+    ?userName=张三
+
+### 提交问卷数据
+POST http://127.0.0.1:33001/api/user/submitSurvey
+Content-Type: application/json
+
+{
+    "username": "未来张主任",
+    "age": 20,
+    "sex": "male",
+    "major": "临床医学",
+    "questions": [
+        {"text": "学校的宿舍条件怎么样？有空调吗？"},
+        {"text": "临床医学专业的实习医院有哪些？"},
+        {"text": ""},
+        {"text": ""},
+        {"text": ""}
+    ]
+}
