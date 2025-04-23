@@ -64,7 +64,6 @@
                 type="text" 
                 placeholder="告诉我你的梦中情专业"
                 @focus="showSuggestions = true"
-                @blur="setTimeout(() => {showSuggestions = false}, 200)"
               >
               <div class="suggestions" v-if="filteredMajors.length > 0 && showSuggestions">
                 <div 
@@ -417,8 +416,9 @@ const handleAction = () => {
       sex: this.form.gender,
       major: this.form.interest,
       questions: this.form.questions
-        .slice(0, 5) // 确保最多5个问题
-        .map(q => q.text || ''), // 提取问题文本
+      .filter(q => q.text.trim()) // 过滤空问题
+      .slice(0, 5)
+      .map(q => ({ text: q.text })),
       phone: this.form.phone,
       email: this.form.email,
       qq: this.form.qq,

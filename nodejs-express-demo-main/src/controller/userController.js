@@ -32,3 +32,30 @@ router.post('/submitSurvey', async (req, res, next) => {
         res.status(500).json({ code: -1, message: '提交问卷失败' });
     }
 });
+// 获取未回答的问题列表
+router.get('/getUnansweredQuestions', async (req, res, next) => {
+    try {
+        const result = await userService.getUnansweredQuestions();
+        res.json({ code: 0, message: '成功', data: result });
+    } catch (error) {
+        console.error('获取未回答问题列表失败:', error);
+        res.status(500).json({ code: -1, message: '获取未回答问题列表失败' });
+    }
+});
+
+// 提交答案
+router.post('/submitAnswer', async (req, res, next) => {
+    try {
+        const { question, answer } = req.body;
+        const result = await userService.submitAnswer(question, answer);
+        res.json({ code: 0, message: '成功', data: result });
+    } catch (error) {
+        console.error('提交答案失败:', error);
+        res.status(500).json({
+            code: -1,
+            message: error.message || '提交答案失败',
+            // 开发环境下返回更多错误信息
+            ...(process.env.NODE_ENV === 'development' && { details: error.stack })
+        });
+    }
+});
