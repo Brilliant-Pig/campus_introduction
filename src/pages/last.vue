@@ -1,4 +1,5 @@
 <template>
+  <div class="zong">
     <div class="faq-container">
       <h1 style="font-family:'MaokenAssortedSans'">问题解答</h1>
       <p style="font-family:'MaokenAssortedSans'; font-size: 50px">可点击问题查看解答</p>
@@ -25,6 +26,7 @@
         </div>
       </div>
     </div>
+  </div>
   </template>
   
   <script>
@@ -60,7 +62,7 @@
   </script>
   
   <style >
-  body {
+.zong {
   margin: 0;
   padding: 0;
   background: linear-gradient(to bottom, #f5fbff 0%, #d0e8ff 50%, #a8d4ff 100%);
