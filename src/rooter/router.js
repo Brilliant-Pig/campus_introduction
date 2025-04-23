@@ -82,6 +82,15 @@ const routes = [
         freeAuth: true
         }
     },
+    {
+        path: '/last',
+        name: 'last',
+        component: () => import('../pages/last.vue'),
+        meta: {
+        title: '问题回答',
+        freeAuth: true
+        }
+    },
 ];
 
 const router = createRouter({
