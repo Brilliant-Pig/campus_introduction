@@ -56,6 +56,15 @@ const routes = [
         }
     },
     {
+        path: '/manager',
+        name: 'Manager',
+        component: () => import('../pages/manager.vue'),
+        meta: {
+        title: '管理人员',
+        freeAuth: true
+        }
+    },
+    {
         path: '/schooljump',
         name: 'schooljump',
         component: () => import('../pages/schooljump.vue'),
