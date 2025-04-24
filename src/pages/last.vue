@@ -35,6 +35,16 @@
   </div>
 </template>
 
+<script setup>
+import ShinyText from '../components/ShinyText.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const handleAction = () => { 
+    router.push({ path: '/caidan'});
+};
+</script>
+
 <script>
 import axios from 'axios';
 
