@@ -913,7 +913,7 @@ export default {
           description: '内含历来分数线哦'
         },
         {
-          image: 'https://introduction-video.oss-cn-shenzhen.aliyuncs.com/life.jpg?Expires=1745472862&OSSAccessKeyId=TMP.3KmpJdKZZ2RW8WYMavQZWwskAnyxdRxxf9hgMmgz8og7dUbRCBNNcZ7nLZwx1K2xeRc7tmjzFvGaNfRNVnupbaeYZF2kAz&Signature=aPuPr4xCdogeAEqslg1jVBDSgxs%3D',
+          image: '/oss/life.jpg',
           link: 'live',
           title: '学校生活',
           description: '你知道吗？广东医宿舍最舒服！还有最美味食堂和最长的小吃街三饭！出行还有地铁！'

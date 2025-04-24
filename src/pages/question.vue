@@ -57,7 +57,7 @@
               <label><span class="emoji">❤️</span> 哪个专业让你心跳加速？</label>
               <div class="fun-fact-card">
               <p>💡 <b>你知道吗？</b>我校临床医学专业进入ESI全球排名前1%，图书馆拥有专属考研自习室！</p>
-              <p>💡 <b>冷知识：</b>我校有实验室，专业的实验器材，不用闻福尔马林也能学解剖哦！</p>
+              <p>💡 <b>冷知识：</b>我校有实验室，专业的实验器材；还有本校自主搭建的满血AI大模型哦！</p>
             </div>
               <input 
                 v-model="form.interest" 
