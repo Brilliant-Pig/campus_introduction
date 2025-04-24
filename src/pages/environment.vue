@@ -46,14 +46,14 @@ export default {
   data() {
     return {
       galleryItems: [
-        { image: 'https://pic1.imgdb.cn/item/67f8e7ab88c538a9b5caffd7.png' },
-        { image: 'https://pic1.imgdb.cn/item/67f8e8ba88c538a9b5cb027b.png' },
-        { image: 'https://pic1.imgdb.cn/item/67f8e96e88c538a9b5cb04be.png' },
-        { image: 'https://pic1.imgdb.cn/item/67f8e98988c538a9b5cb0516.png' },
-        { image: 'https://pic1.imgdb.cn/item/67f8e98a88c538a9b5cb051f.png' },
-        { image: 'https://pic1.imgdb.cn/item/67f8e8ba88c538a9b5cb027d.png' },
-        { image: 'https://pic1.imgdb.cn/item/67f8e98988c538a9b5cb0514.png' },
-        { image: 'https://pic1.imgdb.cn/item/67fce0dc88c538a9b5d0cbc8.jpg' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/SPRING.png' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/fupai.jpg' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/sunset1.jpg' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/sunshine.jpg' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/sunset3.jpg' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/happy.jpg' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/sunset2.jpg' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/blue-sky.jpg' },
       ]
     }
   }
@@ -77,7 +77,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('https://www.gdmu.edu.cn/images/banner/bn04.png');
+  background-image: url('https://life-photos.oss-cn-shenzhen.aliyuncs.com/damen.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

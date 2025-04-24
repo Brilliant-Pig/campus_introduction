@@ -9,12 +9,13 @@
   <CircularGallery
     title="涨“芝士”区"
     :items="[
-        { image: 'https://www.gdmu.edu.cn/images/banner/bn02.jpg' },
-        { image: 'https://www.gdmu.edu.cn/images/banner/bn03.jpg' },
-        { image: 'https://pic1.imgdb.cn/item/67fce2a188c538a9b5d0cc9c.webp' },
-        { image: 'https://pic1.imgdb.cn/item/67fce30988c538a9b5d0ccc3.webp' },
-        { image: 'https://pic1.imgdb.cn/item/67fce30988c538a9b5d0ccc2.webp' },
-        { image: 'https://pic1.imgdb.cn/item/67fc977288c538a9b5cfea89.jpg' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/teach-zone.jpg' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/science-bulid.jpg' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/teachingbuild-A.webp' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/teachingbuild-B.webp' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/classroom.webp' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/lab.jpg' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/science.webp' },
     ]"
     :speed="0.25"
     :radius="350"
@@ -26,7 +27,7 @@
       <div class="image-text-item">
         <div class="image_cont">
           <img
-            src="https://pic1.imgdb.cn/item/67ff3cb988c538a9b5d2b180.jpg"
+            src="https://life-photos.oss-cn-shenzhen.aliyuncs.com/summer-U.jpg"
             alt="Image 1"
             class="animate-image"
           />
@@ -39,7 +40,7 @@
       <div class="image-text-item">
         <div class="image_cont">
           <img
-            src="https://pic1.imgdb.cn/item/67ff3cc888c538a9b5d2b1ad.jpg"
+            src="https://life-photos.oss-cn-shenzhen.aliyuncs.com/huatuo.jpg"
             alt="Image 2"
             class="animate-image"
           />
@@ -52,7 +53,7 @@
       <div class="image-text-item">
         <div class="image_cont">
           <img
-            src="https://pic1.imgdb.cn/item/67ff3cdc88c538a9b5d2b1eb.jpg"
+            src="https://life-photos.oss-cn-shenzhen.aliyuncs.com/library.jpg"
             alt="Image 3"
             class="animate-image"
           />
@@ -65,7 +66,7 @@
       <div class="image-text-item">
         <div class="image_cont">
           <img
-            src="https://pic1.imgdb.cn/item/67ff3db688c538a9b5d2b4b4.jpg"
+            src="https://life-photos.oss-cn-shenzhen.aliyuncs.com/afternoon-classroom.jpg"
             alt="Image 4"
             class="animate-image"
           />
@@ -80,12 +81,12 @@
   <CircularGallery
     title="“医”梦安栖阁"
     :items="[
-        { image: 'https://pic1.imgdb.cn/item/67ffc82588c538a9b5d4839e.jpg' },
-        { image: 'https://pic1.imgdb.cn/item/67fce3c988c538a9b5d0cd17.webp' },
-        { image: 'https://pic1.imgdb.cn/item/67ff402088c538a9b5d2baaf.png' },
-        { image: 'https://pic1.imgdb.cn/item/67fce3c988c538a9b5d0cd16.webp' },
-        { image: 'https://pic1.imgdb.cn/item/67ff401d88c538a9b5d2baa3.png' },
-        { image: 'https://pic1.imgdb.cn/item/67ffc71e88c538a9b5d48339.png' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/cat1.jpg' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/hospital.webp' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/basketball.webp' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/swimingpool.webp' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/playground.webp' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/cat2.jpg' },
     ]"
     :speed="0.25"
     :radius="350"
@@ -97,7 +98,7 @@
       <div class="image-text-item">
         <div class="image_cont">
           <img
-            src="https://pic1.imgdb.cn/item/6800b2fc88c538a9b5d632e5.jpg"
+            src="https://life-photos.oss-cn-shenzhen.aliyuncs.com/8ren.jpg"
             alt="Image 1"
             class="animate-image"
             style="width: 50% !important;"
@@ -115,7 +116,7 @@
         </div>
         <div class="image_cont">
           <img
-            src="https://pic1.imgdb.cn/item/6800b30a88c538a9b5d63332.jpg"
+            src="https://life-photos.oss-cn-shenzhen.aliyuncs.com/sushe.jpg"
             alt="Image 2"
             class="animate-image"
           />
@@ -126,11 +127,11 @@
   <CircularGallery
     title="米其林餐厅"
     :items="[
-        { image: 'https://pic1.imgdb.cn/item/67fce50b88c538a9b5d0ce14.webp' },
-        { image: 'https://pic1.imgdb.cn/item/67fce5fb88c538a9b5d0cea6.webp' },
-        { image: 'https://pic1.imgdb.cn/item/67fce5fb88c538a9b5d0cea7.webp' },
-        { image: 'https://pic1.imgdb.cn/item/67fce5fb88c538a9b5d0cea5.webp' },
-        { image: 'https://pic1.imgdb.cn/item/67fce5fa88c538a9b5d0cea4.webp' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/canteen-self.webp' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/goodme.webp' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/1canteen.webp' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/guoqiaonoodle.webp' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/chicken-rice.webp' },
     ]"
     :speed="0.25"
     :radius="350"
@@ -142,7 +143,7 @@
       <div class="image-text-item">
         <div class="image_cont">
           <img
-            src="https://pic1.imgdb.cn/item/67ff407288c538a9b5d2bb69.png"
+            src="https://life-photos.oss-cn-shenzhen.aliyuncs.com/3canteen.webp"
             alt="Image 1"
             class="animate-image"
           />
@@ -159,7 +160,7 @@
         </div>
         <div class="image_cont">
           <img
-            src="https://pic1.imgdb.cn/item/6800ab3e88c538a9b5d60cc4.jpg"
+            src="https://life-photos.oss-cn-shenzhen.aliyuncs.com/food.webp"
             alt="Image 2"
             class="animate-image"
           />
@@ -170,13 +171,13 @@
   <CircularGallery
     title="地铁+公交，城市任你转"
     :items="[
-        { image: 'https://pic1.imgdb.cn/item/67fce19f88c538a9b5d0cc23.jpg' },
-        { image: 'https://pic1.imgdb.cn/item/67fce75f88c538a9b5d0cf9e.png' },
-        { image: 'https://pic1.imgdb.cn/item/67fce78e88c538a9b5d0cfbf.png' },
-        { image: 'https://pic1.imgdb.cn/item/6800b30988c538a9b5d6332d.jpg' },
-        { image: 'https://pic1.imgdb.cn/item/67fce7db88c538a9b5d0cffa.png' },
-        { image: 'https://pic1.imgdb.cn/item/67fce84a88c538a9b5d0d05a.jpg' },
-        { image: 'https://pic1.imgdb.cn/item/67fce87888c538a9b5d0d07c.png' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/map.jpg' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/vanke.png' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/europian.png' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/subway.jpg' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/night-europian.png' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/Train.jpg' },
+        { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/sakura.png' },
     ]"
     :speed="0.25"
     :radius="350"
@@ -188,7 +189,7 @@
       <div class="image-text-item">
         <div class="image_cont">
           <img
-            src="https://pic1.imgdb.cn/item/67fce7b188c538a9b5d0cfe1.png"
+            src="https://life-photos.oss-cn-shenzhen.aliyuncs.com/yellow-flower.png"
             alt="Image 1"
             class="animate-image"
           />
@@ -205,7 +206,7 @@
         </div>
         <div class="image_cont">
           <img
-            src="https://pic1.imgdb.cn/item/67fce7db88c538a9b5d0cffa.png"
+            src="https://life-photos.oss-cn-shenzhen.aliyuncs.com/night-europian.png"
             alt="Image 2"
             class="animate-image"
           />
@@ -214,7 +215,7 @@
       <div class="image-text-item">
         <div class="image_cont">
           <img
-            src="https://pic1.imgdb.cn/item/67fce87888c538a9b5d0d07c.png"
+            src="https://life-photos.oss-cn-shenzhen.aliyuncs.com/sakura.png"
             alt="Image 3"
             class="animate-image"
           />
