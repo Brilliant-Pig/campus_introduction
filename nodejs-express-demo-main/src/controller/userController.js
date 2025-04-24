@@ -59,3 +59,13 @@ router.post('/submitAnswer', async (req, res, next) => {
         });
     }
 });
+// 获取已回答的问题列表
+router.get('/getAnsweredQuestions', async (req, res, next) => {
+    try {
+        const result = await userService.getAnsweredQuestions();
+        res.json({ code: 0, message: '成功', data: result });
+    } catch (error) {
+        console.error('获取已回答问题列表失败:', error);
+        res.status(500).json({ code: -1, message: '获取已回答问题列表失败' });
+    }
+});

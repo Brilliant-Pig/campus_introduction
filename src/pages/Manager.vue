@@ -74,9 +74,9 @@ const fetchQuestions = async () => {
 
 // 选择问题并填充到输入框
 const selectQuestion = (question) => {
-input.value = question
-answer.value = '' // 清空之前的答案
-drawer.value = false
+  input.value = question
+  answer.value = '' // 清空之前的答案
+  drawer.value = false
 }
 
 // 提交答案到后端
