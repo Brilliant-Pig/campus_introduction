@@ -20,4 +20,14 @@ export default defineConfig({
       '@': '/src', 
     },
   },
+  //绕过跨域规则
+  server: {
+    proxy: {
+      '/oss': {
+        target: 'https://introduction-video.oss-cn-shenzhen.aliyuncs.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/oss/, '')
+      }
+    }
+  }
 })
