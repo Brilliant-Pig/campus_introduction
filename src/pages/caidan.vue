@@ -907,37 +907,37 @@ export default {
       type: Array,
       default: () => [//此处开始对各个网页链接的初始化
         {
-          image: 'https://pic1.imgdb.cn/item/67fe21d188c538a9b5d1a025.png',
+          image: '/oss/zhuanye.jpg',
           link: 'third',
           title: '火热专业',
           description: '内含历来分数线哦'
         },
         {
-          image: 'https://pic1.imgdb.cn/item/67fe224988c538a9b5d1a086.png',
+          image: 'https://introduction-video.oss-cn-shenzhen.aliyuncs.com/life.jpg?Expires=1745472862&OSSAccessKeyId=TMP.3KmpJdKZZ2RW8WYMavQZWwskAnyxdRxxf9hgMmgz8og7dUbRCBNNcZ7nLZwx1K2xeRc7tmjzFvGaNfRNVnupbaeYZF2kAz&Signature=aPuPr4xCdogeAEqslg1jVBDSgxs%3D',
           link: 'live',
           title: '学校生活',
           description: '你知道吗？广东医宿舍最舒服！还有最美味食堂和最长的小吃街三饭！出行还有地铁！'
         },
         {
-          image: 'https://pic1.imgdb.cn/item/67fe1d5288c538a9b5d19ba3.png',
-          link: 'last',
+          image: '/oss/Q%26A.jpg',
+          link: 'question',
           title: '校园Q&A',
           description: '建议浏览完所有网页信息在进入校园Q&A哦！若填写完Q&A并成功考入我们学校大家园，可凭借此信息在入校时候换取小礼品！'
         },
         {
-          image: 'https://pic1.imgdb.cn/item/67fe1ddc88c538a9b5d19c2c.png',
+          image: '/oss/fenjing.jpg',
           link: 'environment',
           title: '校园风景',
           description: '你知道吗？广东医校园风景犹如花园岭一般！有最美的图书馆和最美的教学楼！'
         },
         {
-          image: 'https://pic1.imgdb.cn/item/67fe209488c538a9b5d19eef.png',
+          image: '/oss/jiaoxue.jpg',
           link: 'second',
           title: '教学资源',
           description: '你知道吗？广东医有超牛的科研团队和非常强的师资力量！'
         },
         {
-          image: 'https://pic1.imgdb.cn/item/67fe209f88c538a9b5d19f01.png',
+          image: '/oss/gaikuang.jpg',
           link: 'schooljump',
           title: '学校概况',
           description: '内含校史，校训，校徽，校歌哦(外链跳转)'

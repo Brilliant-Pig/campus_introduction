@@ -40,24 +40,81 @@ exports.getUserIdByName = async (userName) => {
     return await db.query(sql, sqlParams);
 };
 
+// 修改 saveSurvey 方法
 exports.saveSurvey = async (surveyData) => {
-    const sql = `
+    // 保存基本信息到 survey_responses
+    const surveySql = `
         INSERT INTO survey_responses (
             username, 
             age, 
             sex, 
-            major, 
-            question1, 
-            question2, 
-            question3, 
-            question4, 
-            question5,
+            major,
             phone,
             email,
             qq,
             wechat
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `;
-    const sqlParams = [surveyData.username, surveyData.age, surveyData.sex, surveyData.major, surveyData.question1, surveyData.question2, surveyData.question3, surveyData.question4, surveyData.question5, surveyData.phone, surveyData.email, surveyData.qq, surveyData.wechat];
-    return await db.query(sql, sqlParams);
+    const surveyParams = [surveyData.username, surveyData.age, surveyData.sex, surveyData.major, surveyData.phone, surveyData.email, surveyData.qq, surveyData.wechat];
+
+    await db.query(surveySql, surveyParams);
+
+    // 保存问题到 qa 表（只保存不重复的问题）
+    const questions = surveyData.questions.filter((q) => q.text.trim());
+    for (const question of questions) {
+        try {
+            const qaSql = `
+                INSERT INTO qa (question, answer)
+                VALUES (?, '')
+                ON CONFLICT(question) DO NOTHING  -- 如果问题已存在则不插入
+            `;
+            await db.query(qaSql, [question.text]);
+        } catch (error) {
+            console.log('问题已存在，跳过插入:', question.text);
+        }
+    }
+
+    return { success: true };
+};
+
+// 修改 getUnansweredQuestions 方法
+exports.getUnansweredQuestions = async () => {
+    const sql = `
+        SELECT question
+        FROM qa
+        WHERE answer IS NULL OR answer = ''
+        ORDER BY question
+    `;
+    const result = await db.query(sql);
+    return result.map((row) => row.question);
+};
+
+// 修改 submitAnswer 方法
+exports.submitAnswer = async (question, answer) => {
+    const sql = `
+        UPDATE qa
+        SET answer = ?
+        WHERE question = ?
+        AND (answer IS NULL OR answer = '')
+    `;
+    const params = [answer, question];
+
+    const result = await db.query(sql, params);
+
+    if (result.affectedRows === 0) {
+        throw new Error('未找到对应的未回答问题或问题已被回答');
+    }
+
+    return result;
+};
+// 获取已回答的问题
+exports.getAnsweredQuestions = async () => {
+    const sql = `
+        SELECT question, answer
+        FROM qa
+        WHERE answer IS NOT NULL AND answer != ''
+        ORDER BY question
+    `;
+    const result = await db.query(sql);
+    return result;
 };

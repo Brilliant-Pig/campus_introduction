@@ -64,7 +64,6 @@
                 type="text" 
                 placeholder="告诉我你的梦中情专业"
                 @focus="showSuggestions = true"
-                @blur="setTimeout(() => {showSuggestions = false}, 200)"
               >
               <div class="suggestions" v-if="filteredMajors.length > 0 && showSuggestions">
                 <div 
@@ -409,46 +408,59 @@ const handleAction = () => {
         }
       },
       async submitForm() {
-      try {
+    try {
         // 准备符合后端要求的数据结构
         const formData = {
-      username: this.form.name,
-      age: this.form.age,
-      sex: this.form.gender,
-      major: this.form.interest,
-      questions: this.form.questions
-        .slice(0, 5) // 确保最多5个问题
-        .map(q => q.text || ''), // 提取问题文本
-      phone: this.form.phone,
-      email: this.form.email,
-      qq: this.form.qq,
-      wechat: this.form.wechat,
-      preferredContact: this.form.preferredContact
-    };
+            username: this.form.name,
+            age: this.form.age,
+            sex: this.form.gender,
+            major: this.form.interest,
+            questions: this.form.questions
+                .filter(q => q.text.trim())
+                .map(q => ({ text: q.text })),
+            phone: this.form.phone,
+            email: this.form.email,
+            qq: this.form.qq,
+            wechat: this.form.wechat
+        };
         
-    const response = await fetch('http://127.0.0.1:33001/api/user/submitSurvey', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    });
+        // 验证数据
+        if (!formData.username) {
+            throw new Error('请填写用户名');
+        }
+        
+        const response = await fetch('http://127.0.0.1:33001/api/user/submitSurvey', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
         
         const result = await response.json();
         
-        if (response.ok && result.code === 0) {
-          this.currentStep++; // 跳转到完成页
-        } else {
-          throw new Error(result.message || '提交失败');
+        if (!response.ok) {
+            throw new Error(result.message || '提交失败');
         }
-      } catch (error) {
+        
+        this.currentStep++; // 跳转到完成页
+        ElNotification({
+            title: '成功',
+            message: '问卷提交成功',
+            type: 'success',
+            duration: 3000
+        });
+    } catch (error) {
         console.error('提交出错:', error);
         ElNotification({
-          title: '错误',
-          message: '提交失败: ' + error.message,
-          type: 'error',
-          duration: 3000
+            title: '错误',
+            message: '提交失败: ' + error.message,
+            type: 'error',
+            duration: 3000
         });
-      }
-    },
+    }
+},
       resetForm() {
         this.currentStep = 1;
         this.form = {

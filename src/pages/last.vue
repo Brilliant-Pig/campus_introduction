@@ -28,11 +28,12 @@
           class="answer" 
           v-show="item.isOpen"
         >
-          <p>{{ item.answer }}</p>
+          <p>{{ item.answer || '暂无官方回答' }}</p>
         </div>
       </div>
     </div>
   </div>
+
   </template>
   
   <script>
@@ -74,15 +75,20 @@
         this.$router.push({ name: 'question' })
       },
     }
+  },
+  created() {
+    this.fetchAnsweredQuestions();
   }
-  </script>
-  
-  <style >
+}
+</script>
+
+<style>
 .zong {
   margin: 0;
   padding: 0;
   background: linear-gradient(to bottom, #f5fbff 0%, #d0e8ff 50%, #a8d4ff 100%);
   min-height: 100vh;
+
   }
   .faq-container {
     max-width: 800px;
@@ -153,6 +159,7 @@
     z-index: 9999; /* 确保悬浮在最上层 */
     /* 可选动画衔接 */
     transition: all 0.3s ease; 
+
 }
 @import"https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css"
-  </style>
+</style>
