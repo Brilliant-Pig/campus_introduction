@@ -51,7 +51,7 @@
       <!-- Joint Degree Special Card -->
       <div class="joint-degree-card">
         <div class="joint-image-container">
-          <img src="https://pic1.imgdb.cn/item/6802705f88c538a9b5dc2e77.jpg.jpg" alt="联合学士学位" />
+          <img src="https://introduction-video.oss-cn-shenzhen.aliyuncs.com/lianpei.jpg" alt="联合学士学位" />
         </div>
         <div class="joint-content">
           <h2>No.5 联合学士学位</h2>
@@ -125,7 +125,7 @@ const majors = ref([
   {
     key: 'clinical',
     name: 'No.1 临床医学',
-    image: 'https://pic1.imgdb.cn/item/6800f61088c538a9b5d74196.jpg',
+    image: 'https://introduction-video.oss-cn-shenzhen.aliyuncs.com/lingchuang.jpg',
     features: [
       '博士学位授权一级学科',
       '硕士学位授权一级学科',
@@ -139,7 +139,7 @@ const majors = ref([
   {
     key: 'lab',
     name: 'No.2 医学检验技术',
-    image: 'https://pic1.imgdb.cn/item/6800fd2288c538a9b5d75bcd.jpg',
+    image: 'https://introduction-video.oss-cn-shenzhen.aliyuncs.com/yiji.jpg',
     features: [
       '国家级一流本科专业建设点',
       '全国高校特色专业建设点',
@@ -152,7 +152,7 @@ const majors = ref([
   {
     key: 'third',
     name: 'No.3 卫生检验与检疫',
-    image: 'https://pic1.imgdb.cn/item/6800fed988c538a9b5d764d4.jpg',
+    image: 'https://introduction-video.oss-cn-shenzhen.aliyuncs.com/weijian.jpg',
     features: [
       '国家级一流本科专业建设点',
       '广东省卫生检验与检疫实验教学示范中心',
@@ -163,7 +163,7 @@ const majors = ref([
   {
     key: 'forth',
     name: 'No.4 预防医学',
-    image: 'https://pic1.imgdb.cn/item/6800ff9f88c538a9b5d768e6.jpg',
+    image: 'https://introduction-video.oss-cn-shenzhen.aliyuncs.com/yufang.jpg',
     features: [
       '国家级一流本科专业建设点',
       '公共卫生与预防医学为一级学科硕士学位授权点',
