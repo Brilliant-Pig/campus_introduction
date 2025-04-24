@@ -261,7 +261,7 @@
 </div>
     </div>
     <div class="shiny-text-container">
-        <ShinyText text="← 返回菜单" :jump-duration="0.9" :shine-speed="3" color="white" @click="handleAction"/>
+        <ShinyText text="← 返回问题解答" :jump-duration="0.9" :shine-speed="3" color="white" @click="handleAction"/>
     </div>
   </div>
   </template>
@@ -272,7 +272,7 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const handleAction = () => { 
-    router.push({ path: '/caidan'});
+    router.push({ path: '/last'});
 };
 </script>
 

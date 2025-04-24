@@ -920,7 +920,7 @@ export default {
         },
         {
           image: '/oss/Q%26A.jpg',
-          link: 'question',
+          link: 'last',
           title: '校园Q&A',
           description: '建议浏览完所有网页信息在进入校园Q&A哦！若填写完Q&A并成功考入我们学校大家园，可凭借此信息在入校时候换取小礼品！'
         },
