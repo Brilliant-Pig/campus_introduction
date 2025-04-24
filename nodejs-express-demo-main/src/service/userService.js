@@ -41,3 +41,16 @@ exports.saveSurvey = async (surveyData) => {
     };
     return await userDao.saveSurvey(surveyToSave);
 };
+// 获取未回答的问题列表
+exports.getUnansweredQuestions = async () => {
+    const questions = await userDao.getUnansweredQuestions();
+    return questions.map((q) => q.question);
+};
+
+// 提交答案
+exports.submitAnswer = async (question, answer) => {
+    if (!question || !answer) {
+        throw new Error('问题和答案不能为空');
+    }
+    return await userDao.submitAnswer(question, answer);
+};
