@@ -15,7 +15,7 @@ export default {
             player:null,
             audios: [
                 {   name: '向阳青春-BGM',
-                    url: '../src/public/BGM.mp3',
+                    url: 'https://introduction-video.oss-cn-shenzhen.aliyuncs.com/BGM.mp3',
                     cover: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/logo.png'
                 },
             ]

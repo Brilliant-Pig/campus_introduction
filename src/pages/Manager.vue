@@ -59,7 +59,7 @@ const questions = ref([])
 // 从后端获取未回答问题列表
 const fetchQuestions = async () => {
   try {
-    const response = await axios.get('http://127.0.0.1:33001/api/user/getUnansweredQuestions')
+    const response = await axios.get('http://10.5.21.234:33001/api/user/getUnansweredQuestions')
     questions.value = response.data.data
     if (questions.value.length === 0) {
       ElMessage.info('当前没有未回答的问题')
@@ -82,7 +82,7 @@ const selectQuestion = (question) => {
 // 提交答案到后端
 const submitAnswer = async () => {
   try {
-    await axios.post('http://127.0.0.1:33001/api/user/submitAnswer', {
+    await axios.post('http://10.5.21.234:33001/api/user/submitAnswer', {
       question: input.value,
       answer: answer.value
     })
