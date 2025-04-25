@@ -2,12 +2,12 @@
 <div class="environment-container">
     <div class="background"></div>
     <CircularGallery
-      title="校园风景"
-      :items="galleryItems"
-      :speed="0.25"
-      :radius="350"
-      :itemWidth="380"
-      :itemHeight="250"
+        title="校园风景"
+        :items="galleryItems"
+        :speed="isMobile ? 0.1 : 0.25"         
+        :radius="isMobile ? 150 : 350"         
+        :itemWidth="isMobile ? 220 : 380"      
+        :itemHeight="isMobile ? 140 : 250"
     />
     <div class="button-container">
       <ShinyButton text="点击观看3D校园" @click="goTo3DCampus"/>
@@ -21,11 +21,30 @@
 <script setup>
 import ShinyText from '../components/ShinyText.vue';
 import { useRouter } from 'vue-router';
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
 
 const router = useRouter();
 const handleAction = () => { 
     router.push({ path: '/caidan'});
 };
+
+const isMobile = ref(false)
+
+const checkMobile = () => {
+    isMobile.value = window.innerWidth <= 768
+}
+
+// 初始化检查
+onMounted(() => {
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+})
+
+// 清除监听
+onBeforeUnmount(() => {
+    window.removeEventListener('resize', checkMobile)
+})
 </script>
 
 <script>
@@ -99,5 +118,14 @@ export default {
     z-index: 9999; /* 确保悬浮在最上层 */
     /* 可选动画衔接 */
     transition: all 0.3s ease; 
+}
+
+@media (max-width: 768px) {
+  .circular-gallery {
+    padding: 20px 0;
+  }
+  .gallery-title {
+    font-size: 1.5rem !important;
+  }
 }
 </style>
