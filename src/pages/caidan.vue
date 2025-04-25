@@ -906,37 +906,37 @@ export default {
       type: Array,
       default: () => [//此处开始对各个网页链接的初始化
         {
-          image: '/oss/zhuanye.jpg',
+          image: 'https://introduction-video.oss-cn-shenzhen.aliyuncs.com/zhuanye.jpg',
           link: 'third',
           title: '火热专业',
           description: '内含历来分数线哦'
         },
         {
-          image: '/oss/life.jpg',
+          image: 'https://introduction-video.oss-cn-shenzhen.aliyuncs.com/life.jpg',
           link: 'live',
           title: '学校生活',
           description: '你知道吗？广东医宿舍最舒服！还有最美味食堂和最长的小吃街三饭！出行还有地铁！'
         },
         {
-          image: '/oss/Q%26A.jpg',
+          image: 'https://introduction-video.oss-cn-shenzhen.aliyuncs.com/Q%26A.jpg',
           link: 'last',
           title: '校园Q&A',
           description: '建议浏览完所有网页信息在进入校园Q&A哦！若填写完Q&A并成功考入我们学校大家园，可凭借此信息在入校时候换取小礼品！'
         },
         {
-          image: '/oss/fenjing.jpg',
+          image: 'https://introduction-video.oss-cn-shenzhen.aliyuncs.com/fenjing.jpg',
           link: 'environment',
           title: '校园风景',
           description: '你知道吗？广东医校园风景犹如花园岭一般！有最美的图书馆和最美的教学楼！'
         },
         {
-          image: '/oss/jiaoxue.jpg',
+          image: 'https://introduction-video.oss-cn-shenzhen.aliyuncs.com/jiaoxue.jpg',
           link: 'second',
           title: '教学资源',
           description: '你知道吗？广东医有超牛的科研团队和非常强的师资力量！'
         },
         {
-          image: '/oss/gaikuang.jpg',
+          image: 'https://introduction-video.oss-cn-shenzhen.aliyuncs.com/gaikuang.jpg',
           link: 'schooljump',
           title: '学校概况',
           description: '内含校史，校训，校徽，校歌哦(外链跳转)'

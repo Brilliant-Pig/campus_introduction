@@ -429,7 +429,7 @@ const handleAction = () => {
             throw new Error('请填写用户名');
         }
         
-        const response = await fetch('http://127.0.0.1:33001/api/user/submitSurvey', {
+        const response = await fetch('http://10.5.21.234:33001/api/user/submitSurvey', {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json',
@@ -995,6 +995,10 @@ const handleAction = () => {
     transform: translateX(-20px);
   }
   
+  .example-btn {
+    background-color: white;
+  }
+
   /* 响应式设计 */
   @media (max-width: 768px) {
     .survey-container {

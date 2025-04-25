@@ -5,7 +5,7 @@
     <Ballpit :followCursor="true" />
   <div id="app">
 <div class="my-scroll-bar">
-  <h1 style="font-family:'MaokenAssortedSans'; font-weight:'400'; font-size: 80px; padding-bottom: 0%; margin-bottom: 0%;">校园生活</h1>
+  <h1 style="font-family:'MaokenAssortedSans'; font-weight:'400'; font-size: 80px; padding-bottom: 0%; margin-bottom: 0%; color: #333;">校园生活</h1>
   <CircularGallery
     title="涨“芝士”区"
     :items="[
@@ -245,6 +245,7 @@ gsap.registerPlugin(ScrollTrigger);
 import ShinyText from '../components/ShinyText.vue';
 import { useRouter } from 'vue-router';
 import { ref, onBeforeUnmount } from 'vue'
+
 
 const router = useRouter();
 const handleAction = () => { 

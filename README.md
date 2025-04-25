@@ -1,5 +1,16 @@
-# Vue 3 + Vite
+# 医路蔚蓝
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+我们网站的名字叫医路蔚蓝  
+用于展现校园风采。其中从五大模块  
+学校概况”教学资源“火热专业生活服务  
+“学生成长”介绍了广东医东莞校区。  
+通过精美的网站界面设计，校园风采展示，吸引学弟学妹报考我校。  
+我们还提供了热门专业详细介绍以及近三年分数线  
+展现特色学科;  
+同时分享了广东医东莞校区大家感兴趣的关于衣食  
+住行的方方面面。  
+此外，我们还为访问者提供了咨询问题的窗口  
+大家在表单中填入自己的疑惑  
+我们Q&A页面将成为有问必答的传声筒!  
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## 最终更新后若无超严重bug，将减少维护，停更开源！~
