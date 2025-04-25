@@ -16,6 +16,9 @@
             </div>
           </div>
         </div>
+        <div class="mobile-hint-bottom">
+            手机端上下滑动浏览~
+        </div>
       </section>
     </div>
   </template>
@@ -145,176 +148,73 @@
     color: #7f8c8d;
     line-height: 1.6;
   }
-  </style>
-  
 
-<!-- <template>
-<section class="blank">
-  <h1>教学资源</h1>
-</section>
+/* 以下代码为移动端适配 */
+@media (max-width: 768px) {
+  .animation-wrap {
+    gap: 100px;       /* 缩小卡片间距 */
+    padding: 0 5px;  /* 减少左右内边距 */
+  }
 
-<section class="horizontal">
-  <div class="pin-wrap">
-    <div class="animation-wrap to-right">
-      
-      <div class="item">文本</div>
-      <div class="item">文本</div>
-      <div class="item">文本</div>
- 
-    </div>
-  </div>
-</section>
-  </template>
-  
-<script setup>
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-const horizontalSections = gsap.utils.toArray('section.horizontal')
+  .item {
+    flex: 0 0 700px;  /* 移动端宽度缩小 */
+    height: 80vh;     /* 移动端高度缩小 */
+    padding: 20px;    /* 内边距缩小 */
+  }
 
-horizontalSections.forEach(function (sec, i) {	
+  .content {
+    padding: 5px;    /* 内容区域内边距缩小 */
+  }
 
-var thisPinWrap = sec.querySelector('.pin-wrap');
-var thisAnimWrap = thisPinWrap.querySelector('.animation-wrap');
+  h3 {
+    font-size: 1.5rem; /* 标题字体缩小 */
+  }
 
-var getToValue = () => -(thisAnimWrap.scrollWidth - window.innerWidth); 
-
-gsap.fromTo(thisAnimWrap, { 
-    x: () => thisAnimWrap.classList.contains('to-right') ? 0 : getToValue() 
-  }, { 
-    x: () => thisAnimWrap.classList.contains('to-right') ? getToValue() : 0, 
-    ease: "none",
-    scrollTrigger: {
-      trigger: sec,		
-      start: "top top",
-      end: () => "+=" + (thisAnimWrap.scrollWidth - window.innerWidth),
-      pin: thisPinWrap,
-      invalidateOnRefresh: true,
-      //anticipatePin: 1,
-      scrub: true,
-      //markers: true,
-    }
-  });
-
-});	
-  </script>
-  
-  <style scoped>
-@import url('https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-SemiBold/result.css');
-
-html, body, section.horizontal {
-  overflow-x: hidden;
+  .item-image {
+    height: 30%;      /* 图片高度缩小 */
+  }
 }
 
-body { 
-  font-family: "Maple Mono CN SemiBold", sans-serif; 
-  font-weight: 300;
-  
-  margin: 0;
-  padding: 0;
+/* 超小屏幕（如 iPhone SE） */
+@media (max-width: 480px) {
+  .item {
+    flex: 0 0 250px;  /* 更窄的卡片 */
+    height: 45vh;     /* 更矮的卡片 */
+  }
+
+  h3 {
+    font-size: 1rem;  /* 更小的标题 */
+  }
+
+  .content p {
+    font-size: 0.9rem; /* 更小的正文 */
+  }
 }
 
-h1 {
-  margin: 0;
-  padding: 50px 0 0 50px;
+/* 固定在底部的提示（仅移动端显示） */
+.mobile-hint-bottom {
+  display: none; /* 默认隐藏 */
+  position: fixed;
+  bottom: 10px; /* 更靠近底部 */
+  left: 50%; /* 水平居中 */
+  transform: translateX(-50%); /* 精确居中 */
+  max-width: 200px; /* 限制最大宽度 */
+  padding: 8px 16px; /* 更紧凑的内边距 */
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 0.85rem; /* 稍小的字体 */
+  text-align: center;
+  border-radius: 12px; /* 更小的圆角 */
+  z-index: 100;
+  animation: pulse 2s infinite;
+  white-space: nowrap; /* 防止文字换行 */
 }
 
-p {
-  margin: 0;
-  padding: 50px 0 50px 50px;
+/* 仅在移动端显示 */
+@media (max-width: 768px) {
+  .mobile-hint-bottom {
+    display: block;
+  }
 }
 
-section {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-
-section:nth-of-type(odd) {
-background-color: #f0f0f0;
-}
-
-section:nth-of-type(even) {
-background-color: #ffffff;
-}
-
-
-
-
-
-
-
-
-section.horizontal {
-  overflow-x: hidden;
-}
-
-section.horizontal .pin-wrap,
-section.horizontal .animation-wrap {
-    display: flex;
-    position: relative;
-    z-index: 1;  
-    height: 100vh;
-}
-
-
-section.horizontal .item {
-    position: relative;
-    padding: 150px 80px;
-    flex: 0 0 500px;
-    height: calc(100vh - 300px);
-    display: flex;
-    align-items: center;
-    line-height: 1.7;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border-right: 1px solid rgba(0, 0, 0, 0.06);
-    background-color: transparent;
-}
-
-section.horizontal .item:before {
-    position: absolute;
-    font-size: 100px;
-    opacity: .13;
-    font-weight: bold;    
-    z-index: -1;
-    -webkit-transform: translate(-30px, -50px);
-    transform: translate(-30px, -50px);
-    line-height: 1;
-}
-
-
-
-
-section.horizontal .animation-wrap.to-right {
-    counter-reset: item;
-    float: left;
-}
-
-section.horizontal .animation-wrap.to-left {
-    counter-reset: item 11;
-    float: right; 
-}
-
-section.horizontal .animation-wrap.to-right .item:before {
-    counter-increment: item;
-    content: counter(item);
-}
-
-section.horizontal .animation-wrap.to-left .item:before {
-    counter-increment: item -1;
-    content: counter(item);
-}
-
-
-
-section.horizontal .animation-wrap .item:nth-child(2n+2) {
-    align-items: flex-start;
-}
-
-section.horizontal .animation-wrap .item:nth-child(4n+4) {
-    align-items: flex-end;
-}
-  </style> -->
+</style>

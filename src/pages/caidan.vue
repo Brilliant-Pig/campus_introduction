@@ -25,7 +25,6 @@
     </template>
   </div>
   <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css' /> 
-
 </template>
 
 <script>
@@ -1077,7 +1076,7 @@ export default {
 
 .face-description {
   position: absolute;
-  left: 85%;  /* 调整右侧位置 */
+  left: 87%;  /* 调整右侧位置 */
   top: 50%;
   transform: translateY(-50%);
   font-size: 1.2rem;
@@ -1101,6 +1100,43 @@ export default {
   transform: translate(-60%, -50%);
   opacity: 0;
   transition: 0.1s ease;
+}
+
+/* 移动端适配 - 加大上下间距版 */
+@media (max-width: 768px) {
+.face-title,
+.face-description {
+    left: 50%;
+    width: 90%;
+    max-width: 90%;
+    text-align: center;
+    transform: translateX(-50%); /* 只处理水平居中 */
+}
+
+.face-title {
+    top: 20%; /* 上移标题 (原30%) */
+    font-size: 2rem;
+    transform: translate(-50%, -20%); /* 同步调整Y轴 */
+}
+
+.face-description {
+    top: 80%; /* 下移描述 (原70%) */
+    font-size: 1rem;
+    transform: translate(-50%, -80%); /* 同步调整Y轴 */
+}
+
+  /* 调整动画状态的位置 */
+.face-title.active {
+    transform: translate(-50%, -20%);
+}
+
+.face-description.active {
+    transform: translate(-50%, -80%);
+}
+
+.face-description.inactive {
+    transform: translate(-50%, -70%); /* 保持原有隐藏位置 */
+}
 }
 
 .action-button {

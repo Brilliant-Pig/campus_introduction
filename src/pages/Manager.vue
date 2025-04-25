@@ -211,5 +211,83 @@ opacity: 1;
 transform: scale(1.1);
 }
 
+/* ===== 移动端适配（768px以下）===== */
+@media (max-width: 768px) {
+  /* 布局调整 */
+  .center-box {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  /* 问题容器 */
+  .question-container {
+    display: block !important;
+  }
+
+  /* 文字样式 */
+  .title, 
+  .answer-title {
+    font-size: 1.8rem !important;
+    white-space: normal !important;
+    margin-bottom: 10px !important;
+    text-align: left !important;
+  }
+
+  /* 输入框 */
+  .question-input {
+    width: 100% !important;
+    margin-left: 0 !important;
+    height: 50px !important;
+  }
+
+  .answer-input {
+    height: 200px !important;
+    min-height: 120px !important;
+  }
+
+  /* 按钮仍然未修复 */
+  .button-group {
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin-top: 20px !important;
+  }
+
+  .view-button, 
+  .submit-button {
+    width: 100% !important;
+    height: 48px !important;
+    margin: 0 !important;
+    font-size: 1.1rem !important;
+    line-height: 48px !important;
+  }
+
+  /* 装饰图片 */
+  .corner-image {
+    width: 200px !important;
+    left: -50px !important;
+    bottom: -50px !important;
+    opacity: 0.7 !important;
+  }
+
+  /* 抽屉组件 */
+  .el-drawer {
+    width: 85% !important;
+  }
+
+  .drawer-content h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .question-item {
+    padding: 12px !important;
+    font-size: 1rem !important;
+  }
+}
+
 @import"https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css"
 </style>

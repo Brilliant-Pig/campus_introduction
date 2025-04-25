@@ -1047,4 +1047,24 @@ const handleAction = () => {
     /* 可选动画衔接 */
     transition: all 0.3s ease; 
 }
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .shiny-text-container {
+    left: auto;      /* 取消左侧定位 */
+    right: 10px;     /* 贴右 */
+    bottom: 20px;    /* 贴底 */
+    top: auto;       /* 取消顶部定位 */
+    
+    /* 缩小按钮尺寸 */
+    transform: scale(0.8);
+    transform-origin: right bottom; /* 从右下角缩放 */
+  }
+  
+  /* 如果 ShinyText 有内部容器，也同步缩小 */
+  .shiny-text {
+    font-size: 0.9rem !important;
+    padding: 8px 12px !important;
+  }
+}
   </style>
