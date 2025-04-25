@@ -51,11 +51,22 @@ background-clip: text;
 }
 
 .shiny-text-container {
-    position: fixed;
-    left: 20px;
-    top: 20px;
-    z-index: 9999; /* 确保悬浮在最上层 */
-    /* 可选动画衔接 */
-    transition: all 0.3s ease; 
+position: fixed;
+left: 20px;
+top: 20px;
+z-index: 9999; /* 确保悬浮在最上层 */
+/* 可选动画衔接 */
+transition: all 0.3s ease; 
+}
+
+/* ===== 移动端适配 ===== */
+@media (max-width: 768px) {
+.jump {
+margin-top: 35vh !important; /* 降低位置 */
+font-size: 2.5rem !important; /* 80px → 40px */
+line-height: 1.4;
+padding: 0 20px;
+word-break: break-word; /* 允许长文本换行 */
+}
 }
 </style>
