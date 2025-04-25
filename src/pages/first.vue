@@ -193,6 +193,32 @@ animation:
 background: rgba(25,29,34,.8); /* 加深遮罩提高文字可读性 */
 }
 
+.fullscreenVideo {
+object-fit: cover; /* 移动端裁剪保持比例 */
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+min-width: 100%;
+min-height: 100%;
+width: auto;
+height: auto;
+}
+
+/* 根据屏幕方向微调 */
+@media (orientation: portrait) {
+    .fullscreenVideo {
+        width: 100%;
+        height: auto;
+    }
+}
+@media (orientation: landscape) {
+    .fullscreenVideo {
+        width: auto;
+        height: 100%;
+    }
+}
+
 /* 主标题调整 */
 p {
 margin-top: 25vh !important; /* 降低位置 */
