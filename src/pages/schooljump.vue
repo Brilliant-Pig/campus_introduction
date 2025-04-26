@@ -2,7 +2,7 @@
 <template>
     <transition name="fade">
         <div>
-            <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css' /> 
+            <link rel='stylesheet' href='https://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css' /> 
             <p class="jump">正在跳转至广东医科大学相关官方网站...</p>
             <a ref="externalLink" href="https://www.gdmu.edu.cn/xxgk/xg_xx_xh.htm" style="display: none" target="_blank"></a>
         </div>
@@ -34,7 +34,7 @@ export default {
 
 
 <style>
-@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-SemiBold/result.css";
+@import "https://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css";
 
 .jump {
 margin-top:45vh;

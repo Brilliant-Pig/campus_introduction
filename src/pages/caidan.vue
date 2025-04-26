@@ -24,7 +24,7 @@
       </div>
     </template>
   </div>
-  <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css' /> 
+  <link rel='stylesheet' href='https://chinese-fonts-cdn.netlify.app/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css' /> 
 </template>
 
 <script>
@@ -1009,7 +1009,7 @@ export default {
 </script>
 
 <style scoped>
-@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";
+@import "https://chinese-fonts-cdn.netlify.app/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";
 
 #infinite-grid-menu-canvas {
   cursor: grab;
