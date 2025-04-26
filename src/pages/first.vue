@@ -8,7 +8,7 @@
         <!-- 垫一个盒子 -->
         <div id="dull"><p1>.</p1></div>
         <div id="title">
-            <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-SemiBold/result.css' />
+            <link rel='stylesheet' href='https://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css' />
             <transition name="title-fade" appear @after-enter="handleAnimationEnd">
                 <p v-html="boldNumbers(message1)"></p >
             </transition>
@@ -58,8 +58,8 @@ export default {
 </script>
 
 <style scoped>
-@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-SemiBold/result.css";
-@import "https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css";
+@import "https://chinese-fonts-cdn.netlify.app/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";
+@import "https://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css";
 
 .videoContainer {
 position: fixed;
