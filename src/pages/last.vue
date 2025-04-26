@@ -8,8 +8,8 @@
     </div>
     <div class="faq-container">
       <h1 style="font-family:'MaokenAssortedSans'">问题解答</h1>
-      <p style="font-family:'MaokenAssortedSans'; font-size: 50px">可点击问题查看解答</p>
-      <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css' />
+      <p style="font-family:'MaokenAssortedSans'; font-size: 50px; color: #333">可点击问题查看解答</p>
+      <link rel='stylesheet' href='https://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css' />
       
       <div 
         v-for="(item, index) in faqItems" 
@@ -67,7 +67,7 @@ export default {
     },
     async fetchAnsweredQuestions() {
       try {
-        const response = await axios.get('http://127.0.0.1:33001/api/user/getAnsweredQuestions');
+        const response = await axios.get('http://10.5.21.234:33001/api/user/getAnsweredQuestions');
         if (response.data.code === 0) {
           this.faqItems = response.data.data.map(item => ({
             question: item.question,
@@ -138,6 +138,7 @@ h1 {
 }
 
 .answer {
+  color: #333;
   padding: 15px;
   background-color: #fff;
   border-top: 1px solid #eaeaea;
@@ -163,5 +164,5 @@ h1 {
     z-index: 9999; /* 确保悬浮在最上层 */
     transition: all 0.3s ease; 
 }
-@import"https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css"
+@import "https://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css";
 </style>
