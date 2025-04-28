@@ -1,6 +1,6 @@
 <template>
-  <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css' /> 
-  <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css' /> 
+  <link rel='stylesheet' href='https://chinese-fonts-cdn.netlify.app/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css' /> 
+  <link rel='stylesheet' href='ttps://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css' /> 
   <div class="gallery-container">
     <h2 class="gallery-title">{{ title }}</h2>
     <div 
@@ -200,6 +200,6 @@ export default {
     --itemHeight: 350px;
   }
 }
-@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";
-@import "https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css"
+@import "https://chinese-fonts-cdn.netlify.app/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";
+@import "ttps://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css"
 </style>

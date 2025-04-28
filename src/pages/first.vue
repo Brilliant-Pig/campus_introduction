@@ -8,7 +8,7 @@
         <!-- 垫一个盒子 -->
         <div id="dull"><p1>.</p1></div>
         <div id="title">
-            <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-SemiBold/result.css' />
+            <link rel='stylesheet' href='https://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css' />
             <transition name="title-fade" appear @after-enter="handleAnimationEnd">
                 <p v-html="boldNumbers(message1)"></p >
             </transition>
@@ -58,8 +58,8 @@ export default {
 </script>
 
 <style scoped>
-@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-SemiBold/result.css";
-@import "https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css";
+@import "https://chinese-fonts-cdn.netlify.app/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";
+@import "https://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css";
 
 .videoContainer {
 position: fixed;
@@ -185,4 +185,80 @@ animation:
 50% { transform: scale(1.05); }
 }
 /* 以上为浮动箭头CSS */
+
+/* ===== 移动端适配 ===== */
+@media (max-width: 768px) {
+/* 背景视频容器优化 */
+.videoContainer:before {
+background: rgba(25,29,34,.8); /* 加深遮罩提高文字可读性 */
+}
+
+.fullscreenVideo {
+object-fit: cover; /* 移动端裁剪保持比例 */
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+min-width: 100%;
+min-height: 100%;
+width: auto;
+height: auto;
+}
+
+/* 根据屏幕方向微调 */
+@media (orientation: portrait) {
+    .fullscreenVideo {
+        width: 100%;
+        height: auto;
+    }
+}
+@media (orientation: landscape) {
+    .fullscreenVideo {
+        width: auto;
+        height: 100%;
+    }
+}
+
+/* 主标题调整 */
+p {
+margin-top: 25vh !important; /* 降低位置 */
+font-size: 3.5rem !important; /* 125px → 56px */
+line-height: 1.2;
+padding: 0 20px;
+}
+
+/* 副标题调整 */
+p2 {
+font-size: 1.2rem !important; /* 25px → 19px */
+margin-left: 0 !important;
+display: block;
+text-align: center !important;
+padding: 0 30px;
+}
+
+/* 浮动箭头调整 */
+.float-text1 {
+margin-top: 30vh !important;
+}
+
+.float-text2 {
+font-size: 1.8rem !important; /* 37px → 29px */
+margin-top: 1vh !important;
+margin-bottom: 3vh !important;
+}
+
+/* ShinyText按钮优化 */
+.shiny-text-container {
+left: auto !important;
+right: 20px !important;
+bottom: 30px !important;
+top: auto !important;
+transform: scale(0.9);
+}
+
+/* 动画微调 */
+@keyframes float {
+50% { transform: translateY(-5px) scale(0.95); }
+}
+}
 </style>

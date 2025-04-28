@@ -429,7 +429,7 @@ const handleAction = () => {
             throw new Error('请填写用户名');
         }
         
-        const response = await fetch('http://127.0.0.1:33001/api/user/submitSurvey', {
+        const response = await fetch('http://10.5.21.234:33001/api/user/submitSurvey', {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json',
@@ -995,6 +995,10 @@ const handleAction = () => {
     transform: translateX(-20px);
   }
   
+  .example-btn {
+    background-color: white;
+  }
+
   /* 响应式设计 */
   @media (max-width: 768px) {
     .survey-container {
@@ -1046,5 +1050,25 @@ const handleAction = () => {
     z-index: 9999; /* 确保悬浮在最上层 */
     /* 可选动画衔接 */
     transition: all 0.3s ease; 
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .shiny-text-container {
+    left: auto;      /* 取消左侧定位 */
+    right: 10px;     /* 贴右 */
+    bottom: 20px;    /* 贴底 */
+    top: auto;       /* 取消顶部定位 */
+    
+    /* 缩小按钮尺寸 */
+    transform: scale(0.8);
+    transform-origin: right bottom; /* 从右下角缩放 */
+  }
+  
+  /* 如果 ShinyText 有内部容器，也同步缩小 */
+  .shiny-text {
+    font-size: 0.9rem !important;
+    padding: 8px 12px !important;
+  }
 }
   </style>

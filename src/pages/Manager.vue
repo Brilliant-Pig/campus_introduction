@@ -59,7 +59,7 @@ const questions = ref([])
 // 从后端获取未回答问题列表
 const fetchQuestions = async () => {
   try {
-    const response = await axios.get('http://127.0.0.1:33001/api/user/getUnansweredQuestions')
+    const response = await axios.get('http://10.5.21.234:33001/api/user/getUnansweredQuestions')
     questions.value = response.data.data
     if (questions.value.length === 0) {
       ElMessage.info('当前没有未回答的问题')
@@ -82,7 +82,7 @@ const selectQuestion = (question) => {
 // 提交答案到后端
 const submitAnswer = async () => {
   try {
-    await axios.post('http://127.0.0.1:33001/api/user/submitAnswer', {
+    await axios.post('http://10.5.21.234:33001/api/user/submitAnswer', {
       question: input.value,
       answer: answer.value
     })
@@ -211,5 +211,86 @@ opacity: 1;
 transform: scale(1.1);
 }
 
+
 @import "https://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css";
+
+/* ===== 移动端适配（768px以下）===== */
+@media (max-width: 768px) {
+  /* 布局调整 */
+  .center-box {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  /* 问题容器 */
+  .question-container {
+    display: block !important;
+  }
+
+  /* 文字样式 */
+  .title, 
+  .answer-title {
+    font-size: 1.8rem !important;
+    white-space: normal !important;
+    margin-bottom: 10px !important;
+    text-align: left !important;
+  }
+
+  /* 输入框 */
+  .question-input {
+    width: 100% !important;
+    margin-left: 0 !important;
+    height: 50px !important;
+  }
+
+  .answer-input {
+    height: 200px !important;
+    min-height: 120px !important;
+  }
+
+  /* 按钮仍然未修复 */
+  .button-group {
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin-top: 20px !important;
+  }
+
+  .view-button, 
+  .submit-button {
+    width: 100% !important;
+    height: 48px !important;
+    margin: 0 !important;
+    font-size: 1.1rem !important;
+    line-height: 48px !important;
+  }
+
+  /* 装饰图片 */
+  .corner-image {
+    width: 200px !important;
+    left: -50px !important;
+    bottom: -50px !important;
+    opacity: 0.7 !important;
+  }
+
+  /* 抽屉组件 */
+  .el-drawer {
+    width: 85% !important;
+  }
+
+  .drawer-content h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .question-item {
+    padding: 12px !important;
+    font-size: 1rem !important;
+  }
+}
+
+
 </style>

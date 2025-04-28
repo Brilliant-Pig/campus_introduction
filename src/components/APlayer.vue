@@ -15,8 +15,8 @@ export default {
             player:null,
             audios: [
                 {   name: '向阳青春-BGM',
-                    url: '../src/public/music/BGM.mp3',
-                    cover: 'https://pic1.imgdb.cn/item/6803419958cb8da5c8b4da72.png'
+                    url: 'https://introduction-video.oss-cn-shenzhen.aliyuncs.com/BGM.mp3',
+                    cover: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/logo.png'
                 },
             ]
         };

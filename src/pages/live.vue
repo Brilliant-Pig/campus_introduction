@@ -1,11 +1,11 @@
 <template>
-  <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css' /> 
-  <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css' /> 
+  <link rel='stylesheet' href='https://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css' /> 
+  <link rel='stylesheet' href='https://chinese-fonts-cdn.netlify.app/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css' /> 
   <div style="position: relative; overflow: hidden; width: 100%; height: 100%;">
     <Ballpit :followCursor="true" />
   <div id="app">
 <div class="my-scroll-bar">
-  <h1 style="font-family:'MaokenAssortedSans'; font-weight:'400'; font-size: 80px; padding-bottom: 0%; margin-bottom: 0%;">校园生活</h1>
+  <h1 style="font-family:'MaokenAssortedSans'; font-weight:'400'; font-size: 80px; padding-bottom: 0%; margin-bottom: 0%; color: #333;">校园生活</h1>
   <CircularGallery
     title="涨“芝士”区"
     :items="[
@@ -17,10 +17,10 @@
         { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/lab.jpg' },
         { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/science.webp' },
     ]"
-    :speed="0.25"
-    :radius="350"
-    :itemWidth="380"
-    :itemHeight="250"
+    :speed="isMobile ? 0.1 : 0.25"         
+    :radius="isMobile ? 150 : 350"         
+    :itemWidth="isMobile ? 220 : 380"      
+    :itemHeight="isMobile ? 140 : 250"
   />
   <section id="content">
     <section class="image-text-grid container">
@@ -88,10 +88,10 @@
         { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/playground.webp' },
         { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/cat2.jpg' },
     ]"
-    :speed="0.25"
-    :radius="350"
-    :itemWidth="380"
-    :itemHeight="250"
+    :speed="isMobile ? 0.1 : 0.25"         
+    :radius="isMobile ? 150 : 350"         
+    :itemWidth="isMobile ? 220 : 380"      
+    :itemHeight="isMobile ? 140 : 250"
   />
   <section id="content">
     <section class="image-text-grid container">
@@ -133,10 +133,10 @@
         { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/guoqiaonoodle.webp' },
         { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/chicken-rice.webp' },
     ]"
-    :speed="0.25"
-    :radius="350"
-    :itemWidth="380"
-    :itemHeight="250"
+    :speed="isMobile ? 0.1 : 0.25"         
+    :radius="isMobile ? 150 : 350"         
+    :itemWidth="isMobile ? 220 : 380"      
+    :itemHeight="isMobile ? 140 : 250"
   />
   <section id="content">
     <section class="image-text-grid container">
@@ -179,10 +179,10 @@
         { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/Train.jpg' },
         { image: 'https://life-photos.oss-cn-shenzhen.aliyuncs.com/sakura.png' },
     ]"
-    :speed="0.25"
-    :radius="350"
-    :itemWidth="380"
-    :itemHeight="250"
+    :speed="isMobile ? 0.1 : 0.25"         
+    :radius="isMobile ? 150 : 350"         
+    :itemWidth="isMobile ? 220 : 380"      
+    :itemHeight="isMobile ? 140 : 250"
   />
   <section id="content">
     <section class="image-text-grid container">
@@ -244,11 +244,30 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 import ShinyText from '../components/ShinyText.vue';
 import { useRouter } from 'vue-router';
+import { ref, onBeforeUnmount } from 'vue'
+
 
 const router = useRouter();
 const handleAction = () => { 
     router.push({ path: '/caidan'});
 };
+
+const isMobile = ref(false)
+
+const checkMobile = () => {
+    isMobile.value = window.innerWidth <= 768
+}
+
+// 初始化检查
+onMounted(() => {
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+})
+
+// 清除监听
+onBeforeUnmount(() => {
+    window.removeEventListener('resize', checkMobile)
+})
 
 let scrollbox;
 const resizeBody = () => {
@@ -357,8 +376,8 @@ onUnmounted(() => {
 </script>
 
 <style>
-@import "https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css";
-@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";
+@import "https://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css";
+@import "https://chinese-fonts-cdn.netlify.app/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";
 
 .my-scroll-bar {
   overflow: auto;
@@ -372,7 +391,6 @@ onUnmounted(() => {
   height: 100vh;
 
 }
-
 
 .container {
 max-width: auto;
@@ -452,5 +470,14 @@ font-weight:'400';
     z-index: 9999; /* 确保悬浮在最上层 */
     /* 可选动画衔接 */
     transition: all 0.3s ease; 
+}
+
+@media (max-width: 768px) {
+  .circular-gallery {
+    padding: 10px 0;
+  }
+  .gallery-title {
+    font-size: 3rem !important;
+  }
 }
 </style>

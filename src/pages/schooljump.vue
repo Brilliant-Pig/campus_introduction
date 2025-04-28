@@ -2,7 +2,7 @@
 <template>
     <transition name="fade">
         <div>
-            <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css' /> 
+            <link rel='stylesheet' href='https://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css' /> 
             <p class="jump">正在跳转至广东医科大学相关官方网站...</p>
             <a ref="externalLink" href="https://www.gdmu.edu.cn/xxgk/xg_xx_xh.htm" style="display: none" target="_blank"></a>
         </div>
@@ -34,7 +34,7 @@ export default {
 
 
 <style>
-@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-SemiBold/result.css";
+@import "https://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css";
 
 .jump {
 margin-top:45vh;
@@ -51,11 +51,22 @@ background-clip: text;
 }
 
 .shiny-text-container {
-    position: fixed;
-    left: 20px;
-    top: 20px;
-    z-index: 9999; /* 确保悬浮在最上层 */
-    /* 可选动画衔接 */
-    transition: all 0.3s ease; 
+position: fixed;
+left: 20px;
+top: 20px;
+z-index: 9999; /* 确保悬浮在最上层 */
+/* 可选动画衔接 */
+transition: all 0.3s ease; 
+}
+
+/* ===== 移动端适配 ===== */
+@media (max-width: 768px) {
+.jump {
+margin-top: 35vh !important; /* 降低位置 */
+font-size: 2.5rem !important; /* 80px → 40px */
+line-height: 1.4;
+padding: 0 20px;
+word-break: break-word; /* 允许长文本换行 */
+}
 }
 </style>

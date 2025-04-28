@@ -9,7 +9,9 @@
     <div class="faq-container">
       <h1 style="font-family:'MaokenAssortedSans'">问题解答</h1>
       <p style="font-family:'MaokenAssortedSans'; font-size: 50px; color: #333">可点击问题查看解答</p>
+
       <link rel='stylesheet' href='https://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css' />
+
       
       <div 
         v-for="(item, index) in faqItems" 

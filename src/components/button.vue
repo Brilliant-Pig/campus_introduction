@@ -89,5 +89,5 @@ export default {
 </style>
 
 <style>
-@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Bold/result.css";
+@import "https://chinese-fonts-cdn.netlify.app/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";
 </style>
