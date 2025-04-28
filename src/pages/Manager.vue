@@ -3,7 +3,7 @@
     <div class="center-box">
       <div class="question-container">
         <h1 class="title" style="font-family:'MaokenAssortedSans'">Question：</h1>
-        <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css' /> 
+        <link rel='stylesheet' href="https://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css" /> 
         <el-input v-model="input" class="question-input" placeholder="" readonly />
       </div>
       <div class="answer-container">
@@ -211,6 +211,9 @@ opacity: 1;
 transform: scale(1.1);
 }
 
+
+@import "https://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css";
+
 /* ===== 移动端适配（768px以下）===== */
 @media (max-width: 768px) {
   /* 布局调整 */
@@ -289,5 +292,5 @@ transform: scale(1.1);
   }
 }
 
-@import"https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css"
+
 </style>

@@ -13,7 +13,7 @@
         <p style="color: #2c10e6;font-size: 75px;">招生代码10571</p>
       </div>
     </div>
-    <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css' />
+    <link rel="stylesheet" href='https://chinese-fonts-cdn.netlify.app/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css' />
     
   
     <div class="majors-grid">
@@ -721,6 +721,7 @@ onMounted(() => {
     /* 可选动画衔接 */
     transition: all 0.3s ease; 
 }
-@import "https://chinese-fonts-cdn.deno.dev/packages/mksjh/dist/MaokenAssortedSans/result.css";
-@import "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";
+@import "https://chinese-fonts-cdn.netlify.app/packages/maple-mono-cn/dist/MapleMono-CN-Medium/result.css";
+@import "https://chinese-fonts-cdn.netlify.app/packages/mksjh/dist/MaokenAssortedSans/result.css";
+
 </style>
